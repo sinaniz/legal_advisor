@@ -1,5 +1,6 @@
 flask
 flask_cors
+nltk
 requests
 torch
 transformers

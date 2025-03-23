@@ -1,6 +1,7 @@
 flask
 flask_cors
 requests
+torch
 transformers
 scikit-learn
 python-dotenv

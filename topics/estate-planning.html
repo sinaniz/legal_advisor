@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalAssist AI - Estate Planning</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #fff9f5;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        header {
+            background-color: #000;            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: #fff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        nav a.active {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .topic-header {
+            text-align: center;
+            margin: 2rem 0 4rem;
+            background-color: #fff;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid #000;
+        }
+
+        .topic-header h1 {
+            font-size: 2.5rem;
+            color: #000;
+            margin-bottom: 1rem;
+        }
+
+        .topic-header p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .subtopic-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .subtopic-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid #666;
+            padding: 2rem;
+        }
+
+        .subtopic-title {
+            color: #000;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #fff;
+        }
+
+        .subtopic-content {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .subtopic-content h3 {
+            color: #000;
+            margin: 1.5rem 0 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .subtopic-content p {
+            margin-bottom: 1rem;
+        }
+
+        .subtopic-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtopic-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 3rem;
+        }
+
+        .faq-section h2 {
+            color: #000;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #fff;
+            text-align: center;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #fff;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .faq-answer {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .resources-section {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 3rem;
+        }
+
+        .resources-section h2 {
+            color: #000;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .resource-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .resource-title {
+            color: #000;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .resource-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .resource-link {
+            display: inline-block;
+            color: #000;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .resource-link:hover {
+            color: #000;
+            text-decoration: underline;
+        }
+
+        .back-to-topics {
+            display: inline-block;
+            background-color: #000;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 2rem 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-to-topics:hover {
+            background-color: #000;        }
+
+        .disclaimer {
+            background-color: #fff;
+            border-left: 4px solid #000;
+            padding: 1.5rem;
+            margin: 3rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .disclaimer h3 {
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .disclaimer p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        footer {
+            background-color: #000;            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .footer-links a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            margin-top: 1rem;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            .subtopic-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .resources-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Legal<span>Assist</span> AI</div>
+        <nav>
+            <ul>
+                <li><a href="../chat.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../legaltopics.html" class="active">Legal Topics</a></li>
+                <li><a href="../resourses.html">Resources</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="topic-header">
+            <h1>Estate Planning</h1>
+            <p>Plan for your future and protect your assets and loved ones with proper estate planning. Learn about wills, trusts, power of attorney, healthcare directives, and more.</p>
+        </section>
+
+        <section class="subtopic-grid">
+            <div class="subtopic-card">
+                <h2 class="subtopic-title">Wills</h2>
+                <div class="subtopic-content">
+                    <p>A will is a legal document that outlines how you want your property distributed after your death. It also allows you to name guardians for minor children and appoint an executor to manage your estate.</p>
+
+                    <h3>Key Components of a Will</h3>
+                    <ul>
+                        <li><strong>Executor:</strong> The person responsible for carrying out your wishes</li>
+                        <li><strong>Beneficiaries:</strong> Individuals or organizations receiving your assets</li>
+                        <li><strong>Guardianship:</strong> Designation of who will care for minor children</li>
+                        <li><strong>Asset distribution:</strong> Specific instructions for property division</li>
+                    </ul>
+
+                    <h3>Types of Wills</h3>
+                    <ul>
+                        <li><strong>Simple Will:</strong> Basic document for straightforward estates</li>
+                        <li><strong>Testamentary Trust Will:</strong> Creates trusts upon death</li>
+                        <li><strong>Joint Will:</strong> Single document for two people, typically spouses</li>
+                        <li><strong>Living Will:</strong> Outlines medical wishes (not property distribution)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="subtopic-card">
+                <h2 class="subtopic-title">Trusts</h2>
+                <div class="subtopic-content">
+                    <p>A trust is a legal arrangement where one party (the trustee) holds assets on behalf of another party (the beneficiary). Trusts can help avoid probate, minimize taxes, and provide more control over asset distribution.</p>
+
+                    <h3>Common Types of Trusts</h3>
+                    <ul>
+                        <li><strong>Revocable Living Trust:</strong> Can be changed during your lifetime</li>
+                        <li><strong>Irrevocable Trust:</strong> Cannot be modified once established</li>
+                        <li><strong>Special Needs Trust:</strong> Preserves government benefits eligibility</li>
+                        <li><strong>Charitable Trust:</strong> Benefits charitable organizations</li>
+                        <li><strong>Spendthrift Trust:</strong> Protects assets from beneficiary's creditors</li>
+                    </ul>
+
+                    <h3>Benefits of Trusts</h3>
+                    <ul>
+                        <li>Avoid probate court proceedings</li>
+                        <li>Potential tax advantages</li>
+                        <li>Greater privacy than wills</li>
+                        <li>Protection against incapacity</li>
+                        <li>More control over asset distribution timing</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="subtopic-card">
+                <h2 class="subtopic-title">Power of Attorney</h2>
+                <div class="subtopic-content">
+                    <p>A power of attorney (POA) is a legal document that gives someone the authority to make decisions on your behalf if you become unable to do so. Different types serve different purposes.</p>
+
+                    <h3>Types of Power of Attorney</h3>
+                    <ul>
+                        <li><strong>Financial POA:</strong> Handles financial matters and transactions</li>
+                        <li><strong>Healthcare POA:</strong> Makes medical decisions on your behalf</li>
+                        <li><strong>Limited POA:</strong> Restricted to specific transactions or time periods</li>
+                        <li><strong>Durable POA:</strong> Remains effective if you become incapacitated</li>
+                        <li><strong>Springing POA:</strong> Takes effect only when specific conditions are met</li>
+                    </ul>
+
+                    <h3>Key Considerations</h3>
+                    <p>Choose an agent who is trustworthy, responsible, and understands your wishes. Consider naming alternate agents in case your first choice cannot serve. Review your POA documents regularly to ensure they still reflect your wishes.</p>
+                </div>
+            </div>
+
+            <div class="subtopic-card">
+                <h2 class="subtopic-title">Healthcare Directives</h2>
+                <div class="subtopic-content">
+                    <p>Healthcare directives are documents that outline your medical care preferences if you become unable to communicate. These documents help ensure your wishes are respected.</p>
+
+                    <h3>Components of Healthcare Directives</h3>
+                    <ul>
+                        <li><strong>Living Will:</strong> Specifies medical treatments you would or would not want</li>
+                        <li><strong>Healthcare Proxy:</strong> Names someone to make healthcare decisions for you</li>
+                        <li><strong>HIPAA Authorization:</strong> Allows access to your medical information</li>
+                        <li><strong>Organ Donation Wishes:</strong> Expresses your desire to donate organs</li>
+                    </ul>
+
+                    <h3>Important Considerations</h3>
+                    <p>Discuss your wishes with your healthcare proxy and family members. Keep copies of your directives accessible, and give copies to your healthcare providers and proxy. Update your directives periodically, especially after major life changes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">Do I need a lawyer to create a will or trust?</div>
+                <div class="faq-answer">While it's possible to create basic estate planning documents using online services or templates, consulting with an estate planning attorney is generally recommended, especially for complex situations. An attorney can ensure your documents comply with state laws, address your specific circumstances, and help you avoid common pitfalls that could invalidate your plans or create unintended consequences.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What happens if I die without a will?</div>
+                <div class="faq-answer">If you die without a will (known as dying "intestate"), your state's laws will determine how your assets are distributed. This typically follows a hierarchy of relatives, starting with spouse and children, then parents, siblings, and other relatives. This may not align with your wishes, and the process can be more time-consuming and expensive. Additionally, the court will appoint a guardian for minor children without your input.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How often should I update my estate plan?</div>
+                <div class="faq-answer">It's advisable to review your estate plan every 3-5 years or after significant life events such as marriage, divorce, birth of children, death of a beneficiary, substantial changes in assets, moving to a different state, or major tax law changes. Regular reviews ensure your plan continues to reflect your current wishes and circumstances.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What's the difference between a will and a living trust?</div>
+                <div class="faq-answer">A will takes effect only after death and must go through probate court, which can be time-consuming and public. A living trust takes effect immediately, continues through incapacity and death, and allows assets to transfer to beneficiaries without probate. Trusts generally offer more privacy and flexibility but may be more complex and expensive to set up initially.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can I change my estate plan after creating it?</div>
+                <div class="faq-answer">Yes, wills, revocable trusts, and most powers of attorney can be amended or revoked during your lifetime as long as you remain mentally competent. Irrevocable trusts, as the name suggests, generally cannot be changed after creation without court approval or unanimous consent from all beneficiaries.</div>
+            </div>
+        </section>
+
+        <section class="resources-section">
+            <h2>Additional Resources</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-title">Estate Planning Checklist</div>
+                    <div class="resource-description">A comprehensive checklist to help you organize and prepare your estate planning documents and information.</div>
+                    <a href="#" class="resource-link">Download PDF →</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-title">Healthcare Directive Templates</div>
+                    <div class="resource-description">Sample healthcare directive forms that you can use as a starting point for creating your own documents.</div>
+                    <a href="#" class="resource-link">View Templates →</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-title">Estate Tax Calculator</div>
+                    <div class="resource-description">Tool to estimate potential estate taxes based on your assets and current tax laws.</div>
+                    <a href="#" class="resource-link">Use Calculator →</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-title">Finding an Estate Planning Attorney</div>
+                    <div class="resource-description">Tips and resources for locating and selecting a qualified estate planning attorney in your area.</div>
+                    <a href="#" class="resource-link">Learn More →</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-title">Digital Asset Inventory Form</div>
+                    <div class="resource-description">A template to help you catalog your digital assets, accounts, and passwords for your executor.</div>
+                    <a href="#" class="resource-link">Download Form →</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-title">Estate Planning Webinars</div>
+                    <div class="resource-description">Free educational webinars covering various aspects of estate planning and asset protection.</div>
+                    <a href="#" class="resource-link">View Schedule →</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="disclaimer">
+            <h3>Legal Disclaimer</h3>
+            <p>The information provided on this website is for general informational purposes only and does not constitute legal advice. The content is not intended to create an attorney-client relationship. Visitors should not act upon the information without seeking professional legal counsel. Laws vary by state and individual circumstances.</p>
+        </div>
+
+        <a href="../legaltopics.html" class="back-to-topics">← Back to Legal Topics</a>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="logo">Legal<span>Assist</span> AI</div>
+            <div class="footer-links">
+                <a href="../chat.html">Home</a>
+                
+                <a href="../about.html">About Us</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+            <div class="copyright">© 2025 LegalAssist AI. All rights reserved.</div>
+        </div>
+    </footer>
+</body>
+</html>

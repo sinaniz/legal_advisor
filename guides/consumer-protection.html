@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalAssist AI - Consumer Protection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #fff9f5;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        header {
+            background-color: #000;            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: #fff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin: 2rem 0 3rem;
+            background-color: #fff;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid #000;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #000;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .content-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 3rem;
+        }
+
+        .section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            color: #000;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #fff;
+        }
+
+        .section h3 {
+            color: #000;
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .section p, .section ul, .section ol {
+            color: #555;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .section ul, .section ol {
+            margin-left: 2rem;
+        }
+
+        .info-box {
+            background-color: #fff;
+            border-left: 4px solid #000;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+
+        .info-box h4 {
+            color: #000;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .info-box p {
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .steps-box {
+            background-color: #f8f8f8;
+            border-radius: 5px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .steps-box h4 {
+            color: #000;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .steps-box ol {
+            margin-left: 1.5rem;
+        }
+
+        .sample-letter {
+            background-color: #f8f8f8;
+            padding: 1.5rem;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-line;
+            line-height: 1.5;
+            font-size: 0.9rem;
+            color: #333;
+            margin: 1.5rem 0;
+        }
+
+        .back-button {
+            display: inline-block;
+            background-color: #000;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .back-button:hover {
+            background-color: #000;        }
+
+        footer {
+            background-color: #000;            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .copyright {
+            margin-top: 1rem;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #fff;
+            color: #000;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        .resource-button {
+            display: inline-block;
+            background-color: #000;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .resource-button:hover {
+            background-color: #000;        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .content-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Legal<span>Assist</span> AI</div>
+        <nav>
+            <ul>
+                <li><a href="../chat.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../legaltopics.html">Legal Topics</a></li>
+                <li><a href="../resourses.html">Resources</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Consumer Protection</h1>
+            <p>Understanding your rights as a consumer and the legal remedies available when those rights are violated.</p>
+        </section>
+
+        <div class="content-container">
+            <section class="section">
+                <h2>Understanding Consumer Rights</h2>
+                <p>Consumer protection laws are designed to ensure fair trade, competition, and accurate information in the marketplace. These laws protect consumers from fraudulent business practices and poor-quality goods and services.</p>
+                
+                <h3>Basic Consumer Rights</h3>
+                <ul>
+                    <li><strong>Right to Safety:</strong> Protection from hazardous products and services</li>
+                    <li><strong>Right to Be Informed:</strong> Access to accurate information needed to make informed choices</li>
+                    <li><strong>Right to Choose:</strong> Access to a variety of products and services at competitive prices</li>
+                    <li><strong>Right to Be Heard:</strong> Having consumer interests represented in policy making</li>
+                    <li><strong>Right to Redress:</strong> Compensation for misrepresentation, faulty goods, or unsatisfactory services</li>
+                </ul>
+                
+                <div class="info-box">
+                    <h4>Key Federal Consumer Protection Laws</h4>
+                    <ul>
+                        <li><strong>Federal Trade Commission Act:</strong> Prohibits unfair or deceptive practices</li>
+                        <li><strong>Fair Credit Reporting Act:</strong> Regulates the collection and use of consumer credit information</li>
+                        <li><strong>Fair Debt Collection Practices Act:</strong> Protects consumers from abusive debt collection practices</li>
+                        <li><strong>Consumer Product Safety Act:</strong> Protects against unreasonable risks of injuries from consumer products</li>
+                        <li><strong>Magnuson-Moss Warranty Act:</strong> Sets standards for consumer product warranties</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Identifying Consumer Fraud</h2>
+                <p>Consumer fraud encompasses various deceptive practices designed to cheat consumers out of money. Being able to identify these scams is the first step in protecting yourself.</p>
+                
+                <h3>Common Types of Consumer Fraud</h3>
+                <table>
+                    <tr>
+                        <th>Type of Fraud</th>
+                        <th>Warning Signs</th>
+                    </tr>
+                    <tr>
+                        <td>Identity Theft</td>
+                        <td>Unexplained charges on your accounts, bills for products you didn't purchase, calls from debt collectors about unknown accounts</td>
+                    </tr>
+                    <tr>
+                        <td>Credit Card Fraud</td>
+                        <td>Unauthorized transactions, missing cards, suspicious card reader devices</td>
+                    </tr>
+                    <tr>
+                        <td>Online Shopping Scams</td>
+                        <td>Prices too good to be true, poor website design, limited payment options, no contact information</td>
+                    </tr>
+                    <tr>
+                        <td>Fake Charities</td>
+                        <td>Pressure to donate immediately, thanking you for donations you don't remember making, similar but slightly different names to legitimate organizations</td>
+                    </tr>
+                    <tr>
+                        <td>Tech Support Scams</td>
+                        <td>Unsolicited calls about computer problems, requests for remote access to your computer, pressure to buy unnecessary software</td>
+                    </tr>
+                </table>
+                
+                <div class="info-box">
+                    <h4>Red Flags of Consumer Fraud</h4>
+                    <ul>
+                        <li>High-pressure sales tactics</li>
+                        <li>Requests for payment through wire transfers or gift cards</li>
+                        <li>Guaranteed returns on investments</li>
+                        <li>Requests for sensitive personal information</li>
+                        <li>Unsolicited offers that require immediate action</li>
+                        <li>Offers that sound too good to be true</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Disputing Credit Card Charges</h2>
+                <p>The Fair Credit Billing Act (FCBA) provides consumers with the right to dispute billing errors on their credit card statements. This includes unauthorized charges, charges for goods not delivered as agreed, and calculation errors.</p>
+                
+                <h3>Chargeback Process</h3>
+                <div class="steps-box">
+                    <h4>How to Dispute a Credit Card Charge</h4>
+                    <ol>
+                        <li><strong>Review your statement</strong> carefully to identify unauthorized or incorrect charges.</li>
+                        <li><strong>Contact the merchant first</strong> to try to resolve the issue directly.</li>
+                        <li><strong>File a dispute with your credit card issuer</strong> if the merchant is unresponsive or unwilling to resolve the issue. This can usually be done online, by phone, or by mail.</li>
+                        <li><strong>Provide documentation</strong> supporting your claim, such as receipts, order confirmations, or correspondence with the merchant.</li>
+                        <li><strong>Follow up regularly</strong> on the status of your dispute.</li>
+                    </ol>
+                </div>
+                
+                <h3>Time Limits</h3>
+                <p>Under the FCBA, you must dispute a charge within 60 days from the date the statement containing the error was sent to you. Filing promptly increases your chances of a successful resolution.</p>
+                
+                <div class="info-box">
+                    <h4>While Your Dispute is Being Investigated</h4>
+                    <ul>
+                        <li>You don't have to pay the disputed amount while it's under investigation</li>
+                        <li>The credit card company cannot report you as delinquent or threaten your credit score</li>
+                        <li>You still must pay any portion of your bill that is not in dispute</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Handling Defective Products</h2>
+                <p>When you purchase a product that doesn't work as expected or is defective, you have legal rights to seek a remedy.</p>
+                
+                <h3>Understanding Warranties</h3>
+                <ul>
+                    <li><strong>Express Warranties:</strong> Written or verbal promises made by the seller about a product's quality, performance, or features</li>
+                    <li><strong>Implied Warranties:</strong> Unwritten guarantees that exist under state law, including:
+                        <ul>
+                            <li><strong>Implied Warranty of Merchantability:</strong> A product will do what it's supposed to do</li>
+                            <li><strong>Implied Warranty of Fitness for a Particular Purpose:</strong> A product will serve a specific purpose made known to the seller</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h3>Steps to Take with a Defective Product</h3>
+                <ol>
+                    <li>Stop using the product immediately if it poses a safety hazard</li>
+                    <li>Gather documentation (receipt, warranty information, photos of the defect)</li>
+                    <li>Contact the seller or manufacturer with your complaint</li>
+                    <li>Request a specific remedy (replacement, repair, or refund)</li>
+                    <li>If unsuccessful, escalate to management or consumer protection agencies</li>
+                </ol>
+                
+                <div class="info-box">
+                    <h4>Product Liability Claims</h4>
+                    <p>If a defective product causes injury or property damage, you may have a product liability claim against the manufacturer, distributor, or retailer. These claims can be based on:</p>
+                    <ul>
+                        <li>Design defects</li>
+                        <li>Manufacturing defects</li>
+                        <li>Failure to provide adequate warnings or instructions</li>
+                    </ul>
+                    <p>For serious injuries or significant property damage, consult with a product liability attorney.</p>
+                </div>
+                <a href="../resourses.html" class="back-button">Back to Resources</a>
+            </div>
+        </main>
+    
+        <footer>
+            <div class="footer-content">
+                <div class="logo">Legal<span>Assist</span> AI</div>
+                <div class="copyright">© 2025 LegalAssist AI. All rights reserved.</div>
+            </div>
+        </footer>
+    </body>
+    </html>

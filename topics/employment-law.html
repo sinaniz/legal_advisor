@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalAssist AI - Employment Law</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #fff9f5;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        header {
+            background-color: #000;            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: #fff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        nav a.active {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin: 2rem 0 3rem;
+            background-color: #fff;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid #000;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #000;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .breadcrumb {
+            margin-bottom: 2rem;
+            color: #777;
+        }
+
+        .breadcrumb a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .intro-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .intro-section h2 {
+            color: #000;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .intro-section p {
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .employment-areas {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .area-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            border-top: 4px solid #000;
+            padding: 1.5rem;
+        }
+
+        .area-title {
+            font-size: 1.4rem;
+            color: #000;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .area-title i {
+            margin-right: 0.8rem;
+            font-size: 1.8rem;
+        }
+
+        .area-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .key-points {
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: auto;
+        }
+
+        .key-points h4 {
+            color: #000;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .key-points ul {
+            padding-left: 1.5rem;
+            color: #666;
+        }
+
+        .key-points li {
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-section h2 {
+            color: #000;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #fff;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: #000;
+        }
+
+        .faq-answer {
+            color: #555;
+            line-height: 1.6;
+            padding-top: 0.5rem;
+        }
+
+        .resources-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .resources-section h2 {
+            color: #000;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .resource-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #000;
+        }
+
+        .resource-card h3 {
+            color: #000;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .resource-card p {
+            color: #555;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .resource-link {
+            color: #000;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .resource-link:hover {
+            text-decoration: underline;
+        }
+
+        .resource-link::after {
+            content: '→';
+            margin-left: 0.5rem;
+        }
+
+        .cta-section {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 2px dashed #ffc5a8;
+        }
+
+        .cta-section h2 {
+            color: #000;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .cta-section p {
+            color: #555;
+            margin-bottom: 1.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #000;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #000;        }
+
+        .disclaimer {
+            background-color: #fff;
+            border-left: 4px solid #000;
+            padding: 1.5rem;
+            margin: 3rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .disclaimer h3 {
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .disclaimer p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        footer {
+            background-color: #000;            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .footer-links a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            margin-top: 1rem;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 900px) {
+            .employment-areas {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Legal<span>Assist</span> AI</div>
+        <nav>
+            <ul>
+                <li><a href="../chat.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../legaltopics.html" class="active">Legal Topics</a></li>
+                <li><a href="../resourses.html">Resources</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="breadcrumb">
+            <a href="../legaltopics.html">Legal Topics</a> &gt; Employment Law
+        </div>
+
+        <section class="page-header">
+            <h1>Employment Law</h1>
+            <p>Understanding your rights and responsibilities in the workplace is essential for maintaining fair and lawful employment relationships.</p>
+        </section>
+
+        <section class="intro-section">
+            <h2>What is Employment Law?</h2>
+            <p>Employment law regulates the relationship between employers and employees, establishing the rights and obligations of both parties. These laws cover a wide range of issues including hiring practices, workplace safety, compensation, discrimination, harassment, termination, and more.</p>
+            <p>Employment laws exist at the federal, state, and sometimes local levels, creating a complex framework of regulations that protect workers while allowing businesses to operate effectively. Understanding these laws can help both employers and employees navigate workplace challenges and maintain productive, legally compliant relationships.</p>
+        </section>
+
+        <section class="employment-areas">
+            <div class="area-card">
+                <h3 class="area-title">📝 Wage and Hour Laws</h3>
+                <p class="area-description">Federal and state laws establish minimum wage requirements, overtime pay standards, meal and rest break rules, and other compensation-related regulations. The Fair Labor Standards Act (FLSA) is the primary federal law governing these issues.</p>
+                <div class="key-points">
+                    <h4>Key Points:</h4>
+                    <ul>
+                        <li>Federal minimum wage and state variations</li>
+                        <li>Overtime eligibility and calculation (time-and-a-half)</li>
+                        <li>Exempt vs. non-exempt employee classifications</li>
+                        <li>Record-keeping requirements</li>
+                        <li>Child labor restrictions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="area-card">
+                <h3 class="area-title">🚫 Workplace Discrimination</h3>
+                <p class="area-description">Anti-discrimination laws prohibit employers from making employment decisions based on protected characteristics such as race, color, religion, sex, national origin, age, disability, or genetic information. Title VII of the Civil Rights Act, the Age Discrimination in Employment Act, and the Americans with Disabilities Act are key federal laws.</p>
+                <div class="key-points">
+                    <h4>Key Points:</h4>
+                    <ul>
+                        <li>Protected classes under federal and state law</li>
+                        <li>Direct vs. indirect discrimination</li>
+                        <li>Reasonable accommodations for disabilities and religious practices</li>
+                        <li>Equal Employment Opportunity Commission (EEOC) complaint process</li>
+                        <li>State and local expanded protections</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="area-card">
+                <h3 class="area-title">⚠️ Workplace Safety</h3>
+                <p class="area-description">The Occupational Safety and Health Act (OSHA) requires employers to provide a workplace free from recognized hazards that could cause serious physical harm. This includes providing necessary safety equipment, training, and following industry-specific safety regulations.</p>
+                <div class="key-points">
+                    <h4>Key Points:</h4>
+                    <ul>
+                        <li>Employer duty to provide safe working conditions</li>
+                        <li>Employee rights to report safety concerns</li>
+                        <li>Protection from retaliation for safety complaints</li>
+                        <li>Industry-specific safety standards</li>
+                        <li>Workplace injury reporting requirements</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="area-card">
+                <h3 class="area-title">👥 Employment Benefits</h3>
+                <p class="area-description">Various laws govern employee benefits including health insurance, retirement plans, and leave policies. The Employee Retirement Income Security Act (ERISA), the Affordable Care Act, and the Family and Medical Leave Act (FMLA) are significant in this area.</p>
+            <div class="key-points">
+                <h4>Key Points:</h4>
+                    <ul>
+                        <li>Family and Medical Leave Act (FMLA) requirements</li>
+                        <li>Health insurance continuation (COBRA)</li>
+                        <li>Employee Retirement Income Security Act protections</li>
+                        <li>Paid sick leave and vacation policies</li>
+                        <li>Workers' compensation coverage</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">What should I do if I believe I've been discriminated against at work?</div>
+                <div class="faq-answer">If you believe you've been discriminated against, document all incidents with dates, times, and witnesses. Report the issue through your company's internal procedures, typically to HR. If the issue isn't resolved, you can file a charge with the Equal Employment Opportunity Commission (EEOC) or your state's fair employment agency. There are strict time limits for filing, usually 180 or 300 days depending on your location.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Am I entitled to overtime pay?</div>
+                <div class="faq-answer">Non-exempt employees are entitled to overtime pay (1.5 times your regular rate) for hours worked beyond 40 in a workweek under the Fair Labor Standards Act. Whether you're exempt or non-exempt depends on your job duties, salary level, and how you're paid. Employees classified as executives, administrative professionals, outside sales, and certain computer professionals are often exempt if they meet specific criteria including minimum salary requirements.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What is at-will employment?</div>
+                <div class="faq-answer">At-will employment means either the employer or employee can terminate the employment relationship at any time, for any legal reason, with or without notice. Most U.S. states follow this doctrine. However, there are important exceptions: you cannot be fired for discriminatory reasons, in retaliation for exercising legal rights, or in violation of an employment contract or collective bargaining agreement.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Can my employer monitor my communications at work?</div>
+                <div class="faq-answer">Generally, employers have broad rights to monitor communications on company-owned devices and systems. This includes email, internet usage, phone calls, and computer activities. Best practice is to assume your work communications are not private. Some states require employers to notify employees about monitoring practices. Personal devices may have more privacy protections, but can still be subject to monitoring if used for work purposes or connected to company networks.</div>
+            </div>
+        </section>
+
+        <section class="resources-section">
+            <h2>Employment Law Resources</h2>
+            <div class="resource-card">
+                <h3>U.S. Department of Labor</h3>
+                <p>Official government information on federal labor laws, workplace rights, and compliance guidance for employers and employees.</p>
+                <a href="#" class="resource-link">Visit Website</a>
+            </div>
+            <div class="resource-card">
+                <h3>Equal Employment Opportunity Commission (EEOC)</h3>
+                <p>Information on workplace discrimination laws and the process for filing discrimination complaints.</p>
+                <a href="#" class="resource-link">Visit Website</a>
+            </div>
+            <div class="resource-card">
+                <h3>Occupational Safety and Health Administration (OSHA)</h3>
+                <p>Resources on workplace safety regulations, hazard prevention, and reporting unsafe working conditions.</p>
+                <a href="#" class="resource-link">Visit Website</a>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>Need Personalized Employment Law Guidance?</h2>
+            <p>Employment law issues can be complex and highly specific to your situation. Our AI assistant can provide general information, but for personalized advice, consulting with an employment attorney is recommended.</p>
+            <a href="../chat.html" class="cta-button">Chat with LegalAssist AI</a>
+        </section>
+
+        <div class="disclaimer">
+            <h3>Important Disclaimer</h3>
+            <p>The information provided on this page is for general informational purposes only and should not be considered legal advice. Employment laws vary by jurisdiction and change over time. For specific legal advice regarding your situation, please consult with a qualified employment attorney in your area.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="logo">Legal<span>Assist</span> AI</div>
+            <div class="footer-links">
+                <a href="../chat.html">Home</a>
+                <a href="../about.html">About Us</a>
+                <a href="../legaltopics.html">Legal Topics</a>
+                <a href="../contact.html">Contact Us</a>
+            </div>
+            <div class="copyright">© 2025 LegalAssist AI. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple toggle for FAQ items
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+                question.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
+

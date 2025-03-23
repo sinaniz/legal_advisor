@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalAssist AI - Free Legal Information</title>
+    <style>
+       * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+body {
+    background: #f9f9f9;
+    min-height: 100vh;
+    position: relative;
+}
+
+header {
+    background-color: #000;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.logo span {
+    color: #ddd;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav li {
+    margin-left: 30px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #ddd;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.hero {
+    text-align: center;
+    margin: 2rem 0 4rem;
+    background-color: #f0f0f0;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border-left: 6px solid #333;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    color: #000;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+}
+
+.chat-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #eee;
+}
+
+.chat-header {
+    background-color: #000;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.chat-header h2 {
+    margin-left: 10px;
+    font-size: 1.3rem;
+}
+
+.chat-avatar {
+    width: 36px;
+    height: 36px;
+    background-color: #444;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.chat-avatar-icon {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    background-color: #f0f0f0;
+}
+
+.message {
+    margin-bottom: 1rem;
+    max-width: 80%;
+}
+
+.user-message {
+    margin-left: auto;
+    background-color: #333;
+    color: white;
+    padding: 0.8rem 1.2rem;
+    border-radius: 20px 20px 0 20px;
+}
+
+.bot-message {
+    background-color: white;
+    color: #333;
+    padding: 0.8rem 1.2rem;
+    border-radius: 20px 20px 20px 0;
+    display: flex;
+    align-items: flex-start;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.bot-avatar {
+    width: 28px;
+    height: 28px;
+    background-color: #444;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.bot-avatar-icon {
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.bot-message-content {
+    flex: 1;
+    
+}
+.bot-message-content ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    line-height: 1.5;
+}
+
+.bot-message-content li {
+    margin-bottom: 5px;
+}
+
+.bot-message-content strong {
+    font-weight: bold;
+    color: #333;
+}
+
+.bot-message-content em {
+    font-style: italic;
+}
+
+.chat-input {
+    display: flex;
+    padding: 1rem;
+    border-top: 1px solid #eee;
+    background-color: white;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.chat-input input:focus {
+    border-color: #333;
+}
+
+.chat-input button {
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 0.8rem 1.5rem;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.chat-input button:hover {
+    background-color: #666;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 4rem 0;
+}
+
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border-top: 4px solid #333;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.feature-card h3 {
+    color: #000;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.feature-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.disclaimer {
+    background-color: #f0f0f0;
+    border-left: 4px solid #444;
+    padding: 1.5rem;
+    margin: 3rem 0;
+    border-radius: 0 5px 5px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.disclaimer h3 {
+    color: #000;
+    margin-bottom: 0.5rem;
+}
+
+.disclaimer p {
+    color: #666;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+}
+
+.testimonials {
+    margin: 4rem 0;
+    text-align: center;
+}
+
+.testimonials h2 {
+    font-size: 2rem;
+    color: #000;
+    margin-bottom: 2rem;
+}
+
+.testimonial-container {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+    scroll-snap-type: x mandatory;
+}
+
+.testimonial-card {
+    flex: 0 0 350px;
+    scroll-snap-align: start;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    text-align: left;
+    position: relative;
+    border-bottom: 3px solid #444;
+}
+
+.testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 5rem;
+    color: rgba(0, 0, 0, 0.1);
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+.testimonial-content {
+    margin-bottom: 1.5rem;
+    color: #555;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+}
+
+.testimonial-author-info {
+    margin-left: 15px;
+}
+
+.testimonial-author-name {
+    font-weight: bold;
+    color: #000;
+}
+
+.testimonial-author-title {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* General Footer Styles */
+.footer {
+    background-color: #000;
+    color: #fff;
+    padding: 50px 0;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    position: relative;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Styling for the Logo */
+.footer-logo .logo {
+    font-size: 32px;
+
+    justify-content: center;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    font-family: 'Helvetica', sans-serif;
+}
+
+.footer-logo .logo span {
+    color: #666;
+    margin-top: -7px;
+}
+
+.footer-logo .description {
+    font-size: 14px;
+    opacity: 0.7;
+    margin-top: 5px;
+}
+
+/* Footer Links */
+.footer-links {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-section {
+    flex: 1;
+    margin: 0 15px;
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 14px;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+    color: #999;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    color: #fff;
+}
+
+/* Social Media Icons */
+.social-media {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.social-icon {
+    color: #fff;
+    font-size: 24px;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section {
+        margin-bottom: 30px;
+    }
+
+    .logo {
+        font-size: 28px;
+    }
+
+    .description {
+        font-size: 12px;
+    }
+
+    .footer-section h3 {
+        font-size: 16px;
+    }
+}
+
+
+.copyright {
+    margin-top: 1rem;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 2rem;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.close-button {
+    position: absolute;
+    right: 1.5rem;
+    top: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #333;
+}
+
+#modal-title {
+    color: #000;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #333;
+    outline: none;
+}
+
+form button {
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #000;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    nav ul {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .testimonial-container {
+        padding-bottom: 2rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Main Website -->
+    <header>
+        <div class="logo">Legal<span>Assist</span> AI</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="legaltopics.html">Legal Topics</a></li>
+                <li><a href="resourses.html">Resources</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Your Free AI Legal Assistant</h1>
+            <p>Get instant answers to common legal questions, explanations of legal terms, and guidance on legal processes - all at no cost. Our AI is here to make legal information accessible to everyone.</p>
+        </section>
+
+        <section class="chat-container">
+            <div class="chat-header">
+                <div class="chat-avatar">
+                    <div class="chat-avatar-icon">⚖️</div>
+                </div>
+                <h2>Ask Your Legal Question</h2>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <div class="bot-avatar">
+                        <div class="bot-avatar-icon">⚖️</div>
+                    </div>
+                    <div class="bot-message-content">
+                        Hello! I'm your AI legal assistant. How can I help you with legal information today?
+                    </div>
+                </div>
+                <div class="message user-message">
+                    What are my rights as a tenant if my landlord wants to increase my rent?
+                </div>
+                <div class="message bot-message">
+                    <div class="bot-avatar">
+                        <div class="bot-avatar-icon">⚖️</div>
+                    </div>
+                    <div class="bot-message-content">
+                        Great question! Rental laws vary by location, but generally landlords must provide proper notice before increasing rent (typically 30-60 days). In many areas, there are limits on how much and how often rent can be increased. Some cities have rent control ordinances that restrict increases. Would you like me to provide information for a specific state or city?
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Type your legal question here..." id="userInput">
+                <button id="sendBtn">Send</button>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3>Legal Information</h3>
+                <p>Get clear explanations of laws, legal terms, and processes across various legal areas including family law, employment, housing, and consumer rights.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚖️</div>
+                <h3>Rights Awareness</h3>
+                <p>Understand your legal rights and obligations in different situations to make informed decisions and know when you might need professional legal help.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📝</div>
+                <h3>Document Guidance</h3>
+                <p>Learn about common legal documents, what they contain, and general information about how to complete them properly.</p>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2>What Our Users Say</h2>
+            <div class="testimonial-container">
+                <div class="testimonial-card">
+                    <p class="testimonial-content">LegalAssist AI helped me understand my options when dealing with a difficult landlord issue. The information was clear and helped me know what steps to take next.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-author-info">
+                            <div class="testimonial-author-name">Sarah T.</div>
+                            <div class="testimonial-author-title">Tenant Rights</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-content">As a small business owner, I had questions about contracts but couldn't afford a lawyer consultation. This AI tool gave me the basic information I needed to feel confident.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-author-info">
+                            <div class="testimonial-author-name">James R.</div>
+                            <div class="testimonial-author-title">Small Business Owner</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-content">The explanations about family law procedures were extremely helpful and easy to understand. It helped me prepare for my meeting with my attorney.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-author-info">
+                            <div class="testimonial-author-name">Maria C.</div>
+                            <div class="testimonial-author-title">Family Law</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="disclaimer">
+            <h3>Important Disclaimer</h3>
+            <p>LegalAssist AI provides general legal information, not legal advice. Our AI cannot replace a qualified attorney. The information provided should not be relied upon as legal advice, and no attorney-client relationship is created by using this service. For specific legal advice tailored to your situation, please consult with a licensed attorney in your jurisdiction.</p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo">
+                    Legal<span>Assist</span> AI
+                </div>
+                <div class="description">
+                    Your trusted AI assistant for legal advice and resources.
+                </div>
+            </div>
+    
+            <div class="footer-links">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                       
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+    
+                <div class="footer-section">
+                    <h3>Legal Resources</h3>
+                    <ul>
+                        <li><a href="#">Divorce Laws</a></li>
+                        <li><a href="#">IPC Sections</a></li>
+                        <li><a href="#">Legal Advice</a></li>
+                        <li><a href="#">Contract Templates</a></li>
+                    </ul>
+                </div>
+    
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Email: <a href="mailto:support@legalassist.com">legalassistai@gmail.com</a></li>
+                        <li>Phone: +919074653054</li>
+                        <li>Address: Ilahia engineering and technology</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="social-media">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+    
+            <div class="copyright">
+                © 2025 LegalAssist AI. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple chat functionality
+        document.getElementById('sendBtn').addEventListener('click', sendMessage);
+        document.getElementById('userInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        
+        function sendMessage() {
+    const userInput = document.getElementById('userInput');
+    const chatMessages = document.getElementById('chatMessages');
+    
+    if (userInput.value.trim() === '') return;
+    
+    // Add user message
+    const userMessage = document.createElement('div');
+    userMessage.classList.add('message', 'user-message');
+    userMessage.textContent = userInput.value;
+    chatMessages.appendChild(userMessage);
+    
+    // Store user input
+    const userMessageText = userInput.value;
+    userInput.value = '';
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    // Send request to backend using AJAX
+    fetch('https://legal-advisor-ai.onrender.comchat', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ message: userMessageText })
+    })
+    .then(response => response.json())
+    .then(data => {
+    const botMessage = document.createElement('div');
+    botMessage.classList.add('message', 'bot-message');
+    
+    const botAvatar = document.createElement('div');
+    botAvatar.classList.add('bot-avatar');
+    const botAvatarIcon = document.createElement('div');
+    botAvatarIcon.classList.add('bot-avatar-icon');
+    botAvatarIcon.textContent = '⚖️';
+    botAvatar.appendChild(botAvatarIcon);
+
+    const botMessageContent = document.createElement('div');
+    botMessageContent.classList.add('bot-message-content');
+    
+    // Replace newlines with <br> tags
+    const formattedResponse = data.response.replace(/\n/g, '<br>');
+
+    // Set the bot message content with the formatted response
+    botMessageContent.innerHTML = formattedResponse;
+
+    botMessage.appendChild(botAvatar);
+    botMessage.appendChild(botMessageContent);
+    chatMessages.appendChild(botMessage);
+
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+})
+
+}
+
+    
+
+// Get all footer links
+const footerLinks = document.querySelectorAll('.footer-links a');
+
+// Create modal elements
+const modal = document.createElement('div');
+modal.className = 'modal';
+modal.innerHTML = `
+  <div class="modal-content">
+    <span class="close-button">&times;</span>
+    <h2 id="modal-title"></h2>
+    <div id="modal-body"></div>
+  </div>
+`;
+document.body.appendChild(modal);
+
+// Get modal elements
+const closeButton = modal.querySelector('.close-button');
+const modalTitle = modal.querySelector('#modal-title');
+const modalBody = modal.querySelector('#modal-body');
+
+// Add event listeners to footer links
+footerLinks.forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const pageName = this.textContent;
+    modalTitle.textContent = pageName;
+    
+    // Simulate content loading
+    modalBody.textContent = `Loading ${pageName} content...`;
+    
+    // In a real implementation, you would fetch the content from your server
+    // For demo purposes, we'll just show placeholder content
+    setTimeout(() => {
+      switch(pageName) {
+        case 'Terms of Service':
+          modalBody.innerHTML = `
+            <h3>1. Acceptance of Terms</h3>
+            <p>By accessing and using LegalAssist AI, you agree to be bound by these Terms of Service.</p>
+            <h3>2. Description of Service</h3>
+            <p>LegalAssist AI provides general legal information, not legal advice.</p>
+            <h3>3. Limitations of Liability</h3>
+            <p>LegalAssist AI is not responsible for any actions taken based on the information provided.</p>
+          `;
+          break;
+        case 'Privacy Policy':
+          modalBody.innerHTML = `
+            <h3>1. Information Collection</h3>
+            <p>We collect information you provide when using our chat service.</p>
+            <h3>2. Use of Information</h3>
+            <p>Your information is used to improve our services and provide relevant responses.</p>
+            <h3>3. Data Security</h3>
+            <p>We implement security measures to protect your information.</p>
+          `;
+          break;
+        case 'Disclaimer':
+          modalBody.innerHTML = `
+            <h3>Important Notice</h3>
+            <p>LegalAssist AI provides general legal information, not legal advice. Our AI cannot replace a qualified attorney. The information provided should not be relied upon as legal advice, and no attorney-client relationship is created by using this service.</p>
+            <p>For specific legal advice tailored to your situation, please consult with a licensed attorney in your jurisdiction.</p>
+          `;
+          break;
+        case 'About Us':
+          modalBody.innerHTML = `
+            <h3>Our Mission</h3>
+            <p>LegalAssist AI aims to make legal information accessible to everyone.</p>
+            <h3>Our Team</h3>
+            <p>Our team consists of legal professionals and AI experts dedicated to providing accurate information.</p>
+          `;
+          break;
+        case 'Contact':
+          modalBody.innerHTML = `
+            <h3>Get in Touch</h3>
+            <p>Email: hafiz@legalassist-ai.com</p>
+            <p>Phone: +919746232135 </p>
+            <form>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name">
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4"></textarea>
+              </div>
+              <button type="submit">Send Message</button>
+            </form>
+          `;
+          break;
+        default:
+          modalBody.textContent = 'Content not available.';
+      }
+    }, 500);
+    
+    // Show modal
+    modal.style.display = 'block';
+  });
+});
+
+// Close modal when clicking the close button
+closeButton.addEventListener('click', function() {
+  modal.style.display = 'none';
+});
+
+// Close modal when clicking outside of it
+window.addEventListener('click', function(event) {
+  if (event.target === modal) {
+    modal.style.display = 'none';
+  }
+});
+    </script>
+</body>
+</html>

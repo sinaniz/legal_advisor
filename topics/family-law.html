@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalAssist AI - Family Law</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Main Website with Reddish-Orange Theme */
+        body {
+            background: #fff9f5;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        header {
+            background-color: #000;            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: #fff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        nav a.active {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .breadcrumbs {
+            margin-bottom: 2rem;
+            color: #666;
+        }
+
+        .breadcrumbs a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+
+        .page-header {
+            text-align: center;
+            margin: 2rem 0 4rem;
+            background-color: #fff;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid #000;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #000;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .topic-overview {
+            display: flex;
+            margin-bottom: 3rem;
+            gap: 2rem;
+        }
+
+        .overview-content {
+            flex: 2;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .overview-content h2 {
+            color: #000;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #fff;
+        }
+
+        .overview-content p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .overview-sidebar {
+            flex: 1;
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            align-self: flex-start;
+        }
+
+        .sidebar-section {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-section h3 {
+            color: #000;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .sidebar-section ul {
+            list-style: none;
+        }
+
+        .sidebar-section li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .sidebar-section li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #000;
+        }
+
+        .sidebar-cta {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .sidebar-cta h3 {
+            color: #000;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-cta p {
+            color: #555;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #000;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #666;
+        }
+
+        .section-title {
+            color: #000;
+            font-size: 1.8rem;
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #fff;
+        }
+
+        .subtopic-container {
+            margin-bottom: 4rem;
+        }
+
+        .subtopic-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            border-top: 4px solid #666;
+        }
+
+        .subtopic-header {
+            padding: 1.5rem;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .subtopic-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+
+        .subtopic-title {
+            font-size: 1.4rem;
+            color: #000;
+            flex-grow: 1;
+        }
+
+        .subtopic-toggle {
+            color: #000;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .subtopic-content {
+            padding: 1.5rem;
+            display: block;
+        }
+
+        .subtopic-content h4 {
+            color: #000;
+            margin: 1.5rem 0 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .subtopic-content h4:first-child {
+            margin-top: 0;
+        }
+
+        .subtopic-content p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .subtopic-content ul,
+        .subtopic-content ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .subtopic-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .key-points {
+            background-color: #fff;
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #000;
+        }
+
+        .key-points h4 {
+            color: #000;
+            margin-bottom: 0.8rem;
+            margin-top: 0;
+        }
+
+        .key-points ul {
+            margin-bottom: 0;
+        }
+
+        .faq-section {
+            margin: 4rem 0;
+        }
+
+        .faq-item {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-question {
+            padding: 1.2rem 1.5rem;
+            font-weight: 500;
+            color: #000;
+            background-color: #fff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:after {
+            content: "+";
+            font-size: 1.5rem;
+            color: #000;
+        }
+
+        .faq-answer {
+            padding: 1.2rem 1.5rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0 4rem;
+        }
+
+        .resource-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            border-top: 3px solid #000;
+            height: 100%;
+        }
+
+        .resource-card h3 {
+            color: #000;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .resource-card p {
+            color: #555;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .resource-link {
+            display: inline-block;
+            color: #000;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .resource-link:hover {
+            text-decoration: underline;
+        }
+
+        .disclaimer {
+            background-color: #fff;
+            border-left: 4px solid #000;
+            padding: 1.5rem;
+            margin: 3rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .disclaimer h3 {
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .disclaimer p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+  .footer-links {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-section {
+    flex: 1;
+    margin: 0 15px;
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 14px;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+    color: #999;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    color: #fff;
+}
+
+/* Social Media Icons */
+.social-media {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.social-icon {
+    color: #fff;
+    font-size: 24px;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section {
+        margin-bottom: 30px;
+    }
+
+    .logo {
+        font-size: 28px;
+    }
+
+    .description {
+        font-size: 12px;
+    }
+
+    .footer-section h3 {
+        font-size: 16px;
+    }
+}
+
+        .copyright {
+            margin-top: 1rem;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .topic-overview {
+                flex-direction: column;
+            }
+            
+            .resources-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Website -->
+    <header>
+        <div class="logo">Legal<span>Assist</span> AI</div>
+        <nav>
+            <ul>
+                <li><a href="../chat.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../legaltopics.html" class="active">Legal Topics</a></li>
+                <li><a href="../resourses.html">Resources</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="breadcrumbs">
+            <a href="../index.html">Home</a> &gt; <a href="../legaltopics.html">Legal Topics</a> &gt; Family Law
+        </div>
+
+        <section class="page-header">
+            <h1>Family Law</h1>
+            <p>Navigate family legal matters with our comprehensive guide to divorce, child custody, child support, adoption, guardianship, and domestic violence protection.</p>
+        </section>
+
+        <section class="topic-overview">
+            <div class="overview-content">
+                <h2>Understanding Family Law</h2>
+                <p>Family law encompasses legal matters involving family relationships, such as divorce, child custody, adoption, and domestic violence. These legal issues often arise during emotional and challenging times in people's lives, making it essential to understand your rights and responsibilities.</p>
+                <p>Family law varies significantly by state, with different procedures, timelines, and requirements. However, certain fundamental principles guide family law across jurisdictions, focusing on the best interests of children and equitable treatment of spouses.</p>
+                <p>This guide provides general information about common family law topics, but it's important to consult with a qualified family law attorney in your jurisdiction for advice specific to your situation. Family law matters often involve complex emotional, financial, and legal considerations that benefit from professional guidance.</p>
+            </div>
+            <div class="overview-sidebar">
+                <div class="sidebar-section">
+                    <h3>Key Family Law Areas</h3>
+                    <ul>
+                        <li>Divorce/Legal Separation</li>
+                        <li>Child Custody & Visitation</li>
+                        <li>Child Support</li>
+                        <li>Spousal Support/Alimony</li>
+                        <li>Property Division</li>
+                        <li>Adoption</li>
+                        <li>Domestic Violence Protection</li>
+                        <li>Paternity</li>
+                        <li>Guardianship</li>
+                    </ul>
+                </div>
+                <div class="sidebar-cta">
+                    <h3>Need Personalized Help?</h
+                        <h3>Need Personalized Help?</h3>
+                    <p>Family law matters can be complex and emotionally challenging. Consider consulting with a qualified attorney for advice tailored to your specific situation.</p>
+                    <a href="../contact.html" class="cta-button">Get Legal Help</a>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="section-title">Common Family Law Topics</h2>
+
+        <section class="subtopic-container">
+            <div class="subtopic-card">
+                <div class="subtopic-header">
+                    <div class="subtopic-icon">⚖️</div>
+                    <h3 class="subtopic-title">Divorce and Legal Separation</h3>
+                    <div class="subtopic-toggle">+</div>
+                </div>
+                <div class="subtopic-content">
+                    <p>Divorce is the legal process of ending a marriage, while legal separation allows couples to live apart while remaining legally married. Both processes typically involve resolving issues related to property division, child custody, and support.</p>
+                    
+                    <h4>Types of Divorce</h4>
+                    <ul>
+                        <li><strong>Contested Divorce:</strong> Spouses disagree on major issues and require court intervention.</li>
+                        <li><strong>Uncontested Divorce:</strong> Spouses agree on all major issues, often resulting in a faster and less expensive process.</li>
+                        <li><strong>No-Fault Divorce:</strong> Divorce granted without proving wrongdoing, typically citing "irreconcilable differences."</li>
+                        <li><strong>Fault-Based Divorce:</strong> Divorce based on specific grounds such as adultery, cruelty, or abandonment (available in some states).</li>
+                    </ul>
+                    
+                    <h4>Divorce Process Overview</h4>
+                    <ol>
+                        <li>Filing a petition for divorce with the court</li>
+                        <li>Serving the petition to your spouse</li>
+                        <li>Response from your spouse</li>
+                        <li>Disclosure of financial information</li>
+                        <li>Negotiation and settlement discussions</li>
+                        <li>Mediation or litigation if necessary</li>
+                        <li>Final divorce decree from the court</li>
+                    </ol>
+                    
+                    <div class="key-points">
+                        <h4>Key Points to Consider</h4>
+                        <ul>
+                            <li>Divorce waiting periods vary by state (typically 30-90 days)</li>
+                            <li>Residency requirements must be met before filing</li>
+                            <li>Alternative dispute resolution methods like mediation can reduce costs and conflict</li>
+                            <li>Legal separation may be preferable for those with religious objections to divorce or who wish to maintain health insurance benefits</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subtopic-card">
+                <div class="subtopic-header">
+                    <div class="subtopic-icon">👪</div>
+                    <h3 class="subtopic-title">Child Custody and Visitation</h3>
+                    <div class="subtopic-toggle">+</div>
+                </div>
+                <div class="subtopic-content">
+                    <p>Child custody arrangements determine where children will live and how decisions about their upbringing will be made. Courts prioritize the "best interests of the child" when making custody determinations.</p>
+                    
+                    <h4>Types of Custody</h4>
+                    <ul>
+                        <li><strong>Legal Custody:</strong> Authority to make major decisions about the child's education, healthcare, religion, etc.</li>
+                        <li><strong>Physical Custody:</strong> Where the child primarily lives and who handles day-to-day care.</li>
+                        <li><strong>Joint Custody:</strong> Both parents share responsibility (can be joint legal, joint physical, or both).</li>
+                        <li><strong>Sole Custody:</strong> One parent has primary or exclusive custody rights.</li>
+                    </ul>
+                    
+                    <h4>Visitation/Parenting Time</h4>
+                    <p>The non-custodial parent typically receives visitation rights (also called parenting time). Visitation schedules can be:</p>
+                    <ul>
+                        <li><strong>Fixed Schedule:</strong> Specific days and times established for visits</li>
+                        <li><strong>Reasonable Visitation:</strong> Flexible arrangements based on parents' mutual agreement</li>
+                        <li><strong>Supervised Visitation:</strong> Visits monitored by a third party (when safety concerns exist)</li>
+                        <li><strong>Virtual Visitation:</strong> Contact through video calls, especially for long-distance situations</li>
+                    </ul>
+                    
+                    <div class="key-points">
+                        <h4>Factors Courts Consider</h4>
+                        <ul>
+                            <li>Child's age, health, and emotional ties to each parent</li>
+                            <li>Each parent's ability to provide a stable environment</li>
+                            <li>History of domestic violence or substance abuse</li>
+                            <li>Child's preference (if old enough, typically 12+ years)</li>
+                            <li>Each parent's willingness to support the child's relationship with the other parent</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subtopic-card">
+                <div class="subtopic-header">
+                    <div class="subtopic-icon">💰</div>
+                    <h3 class="subtopic-title">Child Support</h3>
+                    <div class="subtopic-toggle">+</div>
+                </div>
+                <div class="subtopic-content">
+                    <p>Child support is a regular payment made by the non-custodial parent to help cover a child's living expenses. Each state has specific guidelines for calculating child support based on various factors.</p>
+                    
+                    <h4>How Child Support is Calculated</h4>
+                    <p>States use one of three primary models to calculate child support:</p>
+                    <ul>
+                        <li><strong>Income Shares Model:</strong> Based on both parents' incomes and what they would spend on the child if still together (used in most states)</li>
+                        <li><strong>Percentage of Income Model:</strong> Fixed percentage of the non-custodial parent's income</li>
+                        <li><strong>Melson Formula:</strong> More complex calculation ensuring parents' basic needs are met first</li>
+                    </ul>
+                    
+                    <h4>Expenses Covered by Child Support</h4>
+                    <ul>
+                        <li>Basic necessities (food, clothing, shelter)</li>
+                        <li>Healthcare and medical expenses</li>
+                        <li>Educational costs</li>
+                        <li>Childcare expenses</li>
+                        <li>Transportation and travel costs</li>
+                        <li>Extracurricular activities</li>
+                    </ul>
+                    
+                    <div class="key-points">
+                        <h4>Important Information</h4>
+                        <ul>
+                            <li>Child support typically continues until the child turns 18 or graduates from high school</li>
+                            <li>Support orders can be modified if there's a significant change in circumstances</li>
+                            <li>Failure to pay child support can result in serious consequences, including wage garnishment, tax refund interception, license suspension, and even jail time</li>
+                            <li>Child support is separate from visitation rights—one cannot be withheld because of issues with the other</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subtopic-card">
+                <div class="subtopic-header">
+                    <div class="subtopic-icon">🏠</div>
+                    <h3 class="subtopic-title">Property Division</h3>
+                    <div class="subtopic-toggle">+</div>
+                </div>
+                <div class="subtopic-content">
+                    <p>During divorce, marital property must be divided between spouses. States follow either "equitable distribution" or "community property" principles to determine how assets and debts are allocated.</p>
+                    
+                    <h4>Property Division Methods</h4>
+                    <ul>
+                        <li><strong>Equitable Distribution:</strong> Property divided fairly (not necessarily equally) based on various factors (used in most states)</li>
+                        <li><strong>Community Property:</strong> Most property acquired during marriage is owned equally by both spouses (used in Arizona, California, Idaho, Louisiana, Nevada, New Mexico, Texas, Washington, and Wisconsin)</li>
+                    </ul>
+                    
+                    <h4>Marital vs. Separate Property</h4>
+                    <ul>
+                        <li><strong>Marital Property:</strong> Assets and debts acquired during the marriage</li>
+                        <li><strong>Separate Property:</strong> Assets owned before marriage, inheritances, personal gifts, and certain other property specified by state law</li>
+                    </ul>
+                    
+                    <div class="key-points">
+                        <h4>Factors Considered in Equitable Distribution</h4>
+                        <ul>
+                            <li>Length of the marriage</li>
+                            <li>Each spouse's age, health, and earning capacity</li>
+                            <li>Contributions to the marriage (including homemaking)</li>
+                            <li>Economic circumstances of each spouse</li>
+                            <li>Tax consequences of property division</li>
+                            <li>Contributions to the other spouse's education or career</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subtopic-card">
+                <div class="subtopic-header">
+                    <div class="subtopic-icon">👶</div>
+                    <h3 class="subtopic-title">Adoption</h3>
+                    <div class="subtopic-toggle">+</div>
+                </div>
+                <div class="subtopic-content">
+                    <p>Adoption is the legal process of establishing a parent-child relationship between individuals not biologically related. Adoption laws vary by state but generally follow similar procedures.</p>
+                    
+                    <h4>Types of Adoption</h4>
+                    <ul>
+                        <li><strong>Agency Adoption:</strong> Through public or private adoption agencies</li>
+                        <li><strong>Independent Adoption:</strong> Arranged directly between birth and adoptive parents</li>
+                        <li><strong>Stepparent Adoption:</strong> Adopting a spouse's biological child</li>
+                        <li><strong>Relative Adoption:</strong> Adopting a family member</li>
+                        <li><strong>International Adoption:</strong> Adopting a child from another country</li>
+                    </ul>
+                    
+                    <h4>Adoption Process Overview</h4>
+                    <ol>
+                        <li>Home study and background checks</li>
+                        <li>Finding a child to adopt</li>
+                        <li>Termination of birth parents' rights</li>
+                        <li>Placement of the child</li>
+                        <li>Post-placement supervision</li>
+                        <li>Finalization of adoption in court</li>
+                    </ol>
+                    
+                    <div class="key-points">
+                        <h4>Key Considerations</h4>
+                        <ul>
+                            <li>Consent requirements for birth parents vary by state</li>
+                            <li>Open adoptions allow ongoing contact between adoptive and birth families</li>
+                            <li>Adoptive parents must meet specific eligibility requirements</li>
+                            <li>Adoption subsidies may be available for special needs adoptions</li>
+                            <li>Adult adoptions are possible in most states</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subtopic-card">
+                <div class="subtopic-header">
+                    <div class="subtopic-icon">🛡️</div>
+                    <h3 class="subtopic-title">Domestic Violence Protection</h3>
+                    <div class="subtopic-toggle">+</div>
+                </div>
+                <div class="subtopic-content">
+                    <p>Domestic violence laws provide protection for victims of abuse within family or household relationships. Legal remedies include protective orders, emergency shelter, and criminal prosecution of abusers.</p>
+                    
+                    <h4>Types of Protective Orders</h4>
+                    <ul>
+                        <li><strong>Emergency/Temporary Protective Order:</strong> Short-term protection granted quickly without a full hearing</li>
+                        <li><strong>Permanent Protective Order:</strong> Longer-term protection issued after a court hearing</li>
+                        <li><strong>No-Contact Order:</strong> Prohibits any contact between parties</li>
+                        <li><strong>Restraining Order:</strong> Restricts specific behaviors</li>
+                    </ul>
+                    
+                    <h4>What Protective Orders Can Do</h4>
+                    <ul>
+                        <li>Prohibit contact or communication</li>
+                        <li>Require the abuser to leave a shared home</li>
+                        <li>Establish temporary custody and visitation arrangements</li>
+                        <li>Order child or spousal support</li>
+                        <li>Prohibit possession of firearms</li>
+                        <li>Require counseling or treatment programs</li>
+                    </ul>
+                    
+                    <div class="key-points">
+                        <h4>Important Information for Victims</h4>
+                        <ul>
+                            <li>National Domestic Violence Hotline: 1-800-799-7233</li>
+                            <li>Documentation of abuse is helpful but not required</li>
+                            <li>Many courts have advocates to help with the process</li>
+                            <li>Violation of protective orders is a crime</li>
+                            <li>Safe housing and legal aid resources are available in most communities</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">How long does it take to get a divorce?</div>
+                <div class="faq-answer">
+                    <p>The time it takes to finalize a divorce varies significantly depending on your state's laws and the complexity of your case. Most states have a mandatory waiting period (typically 30-90 days) between filing and finalization. Uncontested divorces where both parties agree on all issues can be completed in as little as 2-3 months. Contested divorces involving disputes over property, custody, or support can take 6 months to over a year to resolve.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How is child custody determined?</div>
+                <div class="faq-answer">
+                    <p>Courts determine child custody based on the "best interests of the child" standard. Factors considered include each parent's relationship with the child, ability to provide a stable home, physical and mental health, and willingness to support the child's relationship with the other parent. Courts generally prefer arrangements that allow both parents to remain involved in the child's life, though the specific arrangement depends on the family's unique circumstances. Many states now favor joint custody when possible.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can child support be modified after it's ordered?</div>
+                <div class="faq-answer">
+                    <p>Yes, child support orders can be modified if there's a "substantial change in circumstances" since the original order was issued. This might include significant changes in either parent's income, changes in the child's needs, or changes in the custody arrangement. To modify child support, you must file a petition with the court that issued the original order. The court will review the current circumstances and may adjust the support amount accordingly. Many states also periodically review child support orders (every 2-3 years) to ensure they remain appropriate.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What's the difference between legal and physical custody?</div>
+                <div class="faq-answer">
+                    <p>Legal custody refers to the right to make important decisions about a child's upbringing, including education, healthcare, and religious training. Physical custody refers to where the child primarily lives and which parent handles day-to-day care. Parents can share both legal and physical custody (joint custody), or one parent may have sole custody while the other has visitation rights. It's common for parents to share legal custody even when one parent has primary physical custody.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How is property divided in a divorce?</div>
+                <div class="faq-answer">
+                    <p>Property division depends on whether you live in an "equitable distribution" state or a "community property" state. In equitable distribution states (the majority), marital property is divided fairly but not necessarily equally, based on factors like the length of marriage, each spouse's financial situation, and contributions to the marriage. In community property states, most property acquired during marriage is considered equally owned by both spouses and is typically divided 50/50. Separate property (owned before marriage or received as gifts/inheritance) generally remains with the original owner.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How long does the adoption process take?</div>
+                <div class="faq-answer">
+                    <p>The adoption timeline varies widely depending on the type of adoption. Domestic infant adoptions typically take 1-2 years from start to finish. Foster care adoptions may take 6-18 months after a child becomes legally free for adoption. International adoptions can take 1-4 years, depending on the country. Stepparent and relative adoptions are usually faster, often completing within 3-6 months. The process includes home studies, background checks, placement periods, and finalization hearings, each with their own timeframes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="resources-section">
+            <h2 class="section-title">Additional Resources</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3>Family Law Self-Help Centers</h3>
+                    <p>Many courthouses offer self-help centers where you can get information, forms, and assistance with family law matters. These centers can help you navigate the legal process even if you don't have an attorney.</p>
+                    <a href="#" class="resource-link">Find a Self-Help Center Near You</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Legal Aid Organizations</h3>
+                    <p>If you can't afford an attorney, legal aid organizations provide free or low-cost legal services to qualifying individuals. They often prioritize family law cases, especially those involving domestic violence.</p>
+                    <a href="#" class="resource-link">Contact Legal Aid</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Domestic Violence Resources</h3>
+                    <p>If you're experiencing domestic violence, help is available. The National Domestic Violence Hotline provides 24/7 support, safety planning, and referrals to local resources.</p>
+                    <a href="#" class="resource-link">National Domestic Violence Hotline</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Child Support Enforcement Agencies</h3>
+                    <p>Each state has a child support enforcement agency that can help establish paternity, locate parents, establish support orders, and enforce existing orders.</p>
+                    <a href="#" class="resource-link">Find Your State's Agency</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Family Law Forms</h3>
+                    <p>Many courts provide standardized forms for common family law matters. Using these forms can simplify the process and ensure you provide all necessary information.</p>
+                    <a href="#" class="resource-link">Access Court Forms</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Family Law Mediation</h3>
+                    <p>Mediation can help resolve family disputes without going to court. A neutral mediator facilitates communication and helps parties reach mutually acceptable agreements.</p>
+                    <a href="#" class="resource-link">Learn About Mediation</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="disclaimer">
+            <h3>Legal Disclaimer</h3>
+            <p>The information provided on this website is for general informational purposes only and is not legal advice. No attorney-client relationship is formed by using this website. Laws vary by state and change over time. For legal advice specific to your situation, please consult with a qualified attorney in your jurisdiction.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="logo">Legal<span>Assist</span> AI</div>
+            <div class="footer-links">
+                <a href="../chat.html">Home</a>
+                <a href="../about.html">About</a>
+                <a href="../legaltopics.html">Legal Topics</a>
+                <a href="../resourses.html">Resources</a>
+                <a href="../contact.html">Contact</a>
+               
+            </div>
+            <div class="copyright">
+                &copy; 2025 LegalAssist AI. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for toggling subtopics and FAQs
+        document.querySelectorAll('.subtopic-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const toggle = header.querySelector('.subtopic-toggle');
+                
+                if (content.style.display === 'none') {
+                    content.style.display = 'block';
+                    toggle.textContent = '-';
+                } else {
+                    content.style.display = 'none';
+                    toggle.textContent = '+';
+                }
+            });
+        });
+
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                
+                if (answer.style.display === 'none') {
+                    answer.style.display = 'block';
+                    question.style.fontWeight = 'bold';
+                    question.querySelector(':after').textContent = '-';
+                } else {
+                    answer.style.display = 'none';
+                    question.style.fontWeight = 'normal';
+                    question.querySelector(':after').textContent = '+';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

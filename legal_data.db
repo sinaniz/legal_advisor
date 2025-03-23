@@ -1,0 +1,72 @@
+CREATE TABLE legal_queries (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    query TEXT NOT NULL,
+    response TEXT NOT NULL
+);
+
+CREATE TABLE ipc_sections (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    section_number TEXT NOT NULL,
+    title TEXT NOT NULL,
+    description TEXT NOT NULL
+);
+
+-- Insert sample IPC sections
+INSERT INTO ipc_sections (section_number, title, description) VALUES
+('IPC 299', 'Culpable Homicide', 'Whoever causes death by doing an act with the intention of causing death or with the intention of causing such bodily injury as is likely to cause death.'),
+('IPC 300', 'Murder', 'Culpable homicide is murder if the act is done with the intention of causing death or bodily injury which the offender knows is likely to cause death.'),
+('IPC 302', 'Punishment for Murder', 'Whoever commits murder shall be punished with death or imprisonment for life and shall also be liable to a fine.'),
+('IPC 307', 'Attempt to Murder', 'Whoever does any act with such intention or knowledge, and under such circumstances that, if he by that act caused death, he would be guilty of murder.'),
+('IPC 376', 'Punishment for Rape', 'Whoever commits rape shall be punished with rigorous imprisonment for a term which shall not be less than ten years but which may extend to life imprisonment.'),
+('IPC 420', 'Cheating and Dishonest Inducement', 'Whoever cheats and thereby dishonestly induces a person to deliver any property shall be punished with imprisonment up to seven years and a fine.'),
+('IPC 498A', 'Cruelty by Husband or Relatives', 'Whoever subjects a woman to cruelty by her husband or his relatives shall be punished with imprisonment up to three years and a fine.'),
+('IPC 509', 'Word, Gesture, or Act Intended to Insult the Modesty of a Woman', 'Whoever intends to insult the modesty of a woman by word, gesture, or act shall be punished with simple imprisonment up to one year or a fine, or both.');
+
+-- Insert sample legal FAQs
+INSERT INTO legal_queries (query, response) VALUES
+('What is the punishment for theft in India?', 'According to IPC Section 378, theft is punishable under Section 379 with imprisonment up to 3 years or a fine, or both.'),
+('How can I file an FIR?', 'To file an FIR, visit the nearest police station and provide all relevant details about the offense. The police are required to register it if it is a cognizable offense.'),
+('What are my rights if I am arrested?', 'As per Article 22 of the Constitution, you have the right to be informed of the reason for arrest, the right to legal representation, and the right to be presented before a magistrate within 24 hours.'),
+('Can I get bail for a non-bailable offense?', 'Bail in non-bailable offenses depends on judicial discretion. The court considers factors like the severity of the offense and previous criminal records before granting bail.'),
+('How can I file a consumer complaint?', 'You can file a complaint in a consumer court if you have faced unfair trade practices or defective products. It can be done online or by visiting the district consumer forum.'),
+('What is the punishment for cybercrime in India?', 'Cybercrime offenses under the IT Act 2000 include identity theft, hacking, and online fraud. Punishments range from fines to imprisonment up to 10 years, depending on the severity.'),
+('What are the laws regarding domestic violence?', 'The Protection of Women from Domestic Violence Act 2005 provides legal protection to women against physical, emotional, and financial abuse. Affected individuals can seek protection orders and legal remedies.'),
+('What is the legal age for marriage in India?', 'The legal age for marriage in India is 18 years for females and 21 years for males, as per the Prohibition of Child Marriage Act 2006.'),
+('Can a tenant be evicted without notice?', 'No, under the Rent Control Act, a landlord must provide proper legal notice before eviction. The process must follow due legal procedure through the courts if the tenant refuses to vacate.'),
+('What are the rights of an employee in case of wrongful termination?', 'An employee can challenge wrongful termination under labor laws. They can approach the labor court for reinstatement, compensation, or damages as per applicable laws.'),
+('How can I register a property in India?', 'Property registration requires a sale deed, stamp duty payment, and registration at the local sub-registrar office. Legal verification of documents is recommended before purchase.'),
+('What is defamation under Indian law?', 'Defamation is covered under IPC Section 499. A person making false statements that harm another’s reputation can be punished under IPC Section 500 with imprisonment up to two years, a fine, or both.'),
+('How to file a case in consumer court?', 'A consumer complaint can be filed online or at the district consumer forum within two years of the incident. Necessary documents such as invoices and evidence must be provided.'),
+('What is the punishment for drug possession in India?', 'Under the NDPS Act, drug possession can lead to severe punishments, ranging from fines to life imprisonment depending on the quantity and type of drugs found.');
+INSERT INTO ipc_sections (section_number, title, description) VALUES
+('IPC 299', 'Culpable Homicide', 'Whoever causes death by doing an act with the intention of causing death or with the intention of causing such bodily injury as is likely to cause death.'),
+('IPC 300', 'Murder', 'Culpable homicide is murder if the act is done with the intention of causing death or bodily injury which the offender knows is likely to cause death.'),
+('IPC 302', 'Punishment for Murder', 'Whoever commits murder shall be punished with death or imprisonment for life and shall also be liable to a fine.'),
+('IPC 307', 'Attempt to Murder', 'Whoever does any act with such intention or knowledge, and under such circumstances that, if he by that act caused death, he would be guilty of murder.'),
+('IPC 376', 'Punishment for Rape', 'Whoever commits rape shall be punished with rigorous imprisonment for a term which shall not be less than ten years but which may extend to life imprisonment.'),
+('IPC 420', 'Cheating and Dishonest Inducement', 'Whoever cheats and thereby dishonestly induces a person to deliver any property shall be punished with imprisonment up to seven years and a fine.'),
+('IPC 498A', 'Cruelty by Husband or Relatives', 'Whoever subjects a woman to cruelty by her husband or his relatives shall be punished with imprisonment up to three years and a fine.'),
+('IPC 509', 'Word, Gesture, or Act Intended to Insult the Modesty of a Woman', 'Whoever intends to insult the modesty of a woman by word, gesture, or act shall be punished with simple imprisonment up to one year or a fine, or both.');
+
+-- Insert sample legal FAQs
+INSERT INTO legal_queries (query, response) VALUES
+('What is the punishment for theft in India?', 'According to IPC Section 378, theft is punishable under Section 379 with imprisonment up to 3 years or a fine, or both.'),
+('How can I file an FIR?', 'To file an FIR, visit the nearest police station and provide all relevant details about the offense. The police are required to register it if it is a cognizable offense.'),
+('What are my rights if I am arrested?', 'As per Article 22 of the Constitution, you have the right to be informed of the reason for arrest, the right to legal representation, and the right to be presented before a magistrate within 24 hours.'),
+('Can I get bail for a non-bailable offense?', 'Bail in non-bailable offenses depends on judicial discretion. The court considers factors like the severity of the offense and previous criminal records before granting bail.'),
+('How can I file a consumer complaint?', 'You can file a complaint in a consumer court if you have faced unfair trade practices or defective products. It can be done online or by visiting the district consumer forum.'),
+('What is the punishment for cybercrime in India?', 'Cybercrime offenses under the IT Act 2000 include identity theft, hacking, and online fraud. Punishments range from fines to imprisonment up to 10 years, depending on the severity.'),
+('What are the laws regarding domestic violence?', 'The Protection of Women from Domestic Violence Act 2005 provides legal protection to women against physical, emotional, and financial abuse. Affected individuals can seek protection orders and legal remedies.'),
+('What is the legal age for marriage in India?', 'The legal age for marriage in India is 18 years for females and 21 years for males, as per the Prohibition of Child Marriage Act 2006.'),
+('Can a tenant be evicted without notice?', 'No, under the Rent Control Act, a landlord must provide proper legal notice before eviction. The process must follow due legal procedure through the courts if the tenant refuses to vacate.'),
+('What are the rights of an employee in case of wrongful termination?', 'An employee can challenge wrongful termination under labor laws. They can approach the labor court for reinstatement, compensation, or damages as per applicable laws.'),
+('How can I register a property in India?', 'Property registration requires a sale deed, stamp duty payment, and registration at the local sub-registrar office. Legal verification of documents is recommended before purchase.'),
+('What is defamation under Indian law?', 'Defamation is covered under IPC Section 499. A person making false statements that harm another’s reputation can be punished under IPC Section 500 with imprisonment up to two years, a fine, or both.'),
+('How to file a case in consumer court?', 'A consumer complaint can be filed online or at the district consumer forum within two years of the incident. Necessary documents such as invoices and evidence must be provided.'),
+('What is the punishment for drug possession in India?', 'Under the NDPS Act, drug possession can lead to severe punishments, ranging from fines to life imprisonment depending on the quantity and type of drugs found.'),
+('What is the procedure to get a driving license in India?', 'To get a driving license, you must first apply for a learner’s license, clear the driving test, and then apply for a permanent license at the RTO.'),
+('How can I file for divorce in India?', 'Divorce can be filed under Hindu Marriage Act 1955 or Special Marriage Act 1954. Mutual consent divorce takes about six months, while contested divorce can take years.'),
+('Can police search my house without a warrant?', 'Under normal circumstances, police need a search warrant. However, under special cases like prevention of crime, they can enter without one.'),
+('What is the punishment for dowry harassment?', 'Under the Dowry Prohibition Act 1961, giving or taking dowry is illegal. Harassment due to dowry can lead to imprisonment of up to five years and a fine.'),
+('How can I change my name legally in India?', 'To change your name, you must file an affidavit, publish it in newspapers, and then submit it to the Gazette of India for legal recognition.'),
+('What are my rights as a consumer?', 'As per the Consumer Protection Act 2019, consumers have the right to information, protection, redressal, and grievance mechanisms against unfair trade practices.');

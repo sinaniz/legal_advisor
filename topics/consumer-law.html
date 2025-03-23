@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalAssist AI - Consumer Law</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #fff9f5;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        header {
+            background-color: #000;            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: #fff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        nav a.active {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin: 2rem 0 4rem;
+            background-color: #fff;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid #000;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #000;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .breadcrumbs {
+            margin-bottom: 2rem;
+            color: #888;
+        }
+
+        .breadcrumbs a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+
+        .content-container {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .main-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            color: #000;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #fff;
+        }
+
+        .section-content {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .section-content p {
+            margin-bottom: 1rem;
+        }
+
+        .section-content ul, 
+        .section-content ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .sidebar-box {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar-title {
+            color: #000;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #fff;
+        }
+
+        .resource-link {
+            display: block;
+            color: #000;
+            text-decoration: none;
+            margin-bottom: 0.8rem;
+            padding: 0.5rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .resource-link:hover {
+            background-color: #fff;
+        }
+
+        .resource-link i {
+            margin-right: 0.5rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            padding: 0.5rem;
+        }
+
+        .checklist-item::before {
+            content: "✓";
+            margin-right: 0.8rem;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .quick-tips {
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 4px solid #000;
+        }
+
+        .quick-tips h3 {
+            color: #000;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box {
+            background-color: #000;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 10px;
+            margin: 3rem 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: white;
+            color: #000;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #ffd6c0;
+            transform: translateY(-3px);
+        }
+
+        .faq-section {
+            margin: 3rem 0;
+        }
+
+        .faq-item {
+            background-color: white;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 1.5rem;
+            color: #000;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: #555;
+            line-height: 1.7;
+            border-top: 1px solid #fff;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 4px;
+            background-color: #fff;
+            left: 50px;
+            top: 0;
+        }
+
+        .timeline-item {
+            margin-bottom: 2rem;
+            padding-left: 80px;
+            position: relative;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #000;
+            left: 40px;
+            top: 0;
+        }
+
+        .timeline-title {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .disclaimer {
+            background-color: #fff;
+            border-left: 4px solid #000;
+            padding: 1.5rem;
+            margin: 3rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .disclaimer h3 {
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .disclaimer p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+  .footer-links {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-section {
+    flex: 1;
+    margin: 0 15px;
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 14px;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+    color: #999;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    color: #fff;
+}
+
+/* Social Media Icons */
+.social-media {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.social-icon {
+    color: #fff;
+    font-size: 24px;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section {
+        margin-bottom: 30px;
+    }
+
+    .logo {
+        font-size: 28px;
+    }
+
+    .description {
+        font-size: 12px;
+    }
+
+    .footer-section h3 {
+        font-size: 16px;
+    }
+}
+
+        .copyright {
+            margin-top: 1rem;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            .content-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                padding-left: 60px;
+            }
+            
+            .timeline-marker {
+                left: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Legal<span>Assist</span> AI</div>
+        <nav>
+            <ul>
+                <li><a href="../chat.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../legaltopics.html" class="active">Legal Topics</a></li>
+                <li><a href="../resourses.html">Resources</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="breadcrumbs">
+            <a href="../legaltopics.html">Legal Topics</a> > Consumer Law
+        </div>
+
+        <section class="page-header">
+            <h1>Consumer Law</h1>
+            <p>Understanding your rights as a consumer and how to protect yourself from unfair business practices, debt collection, and credit reporting issues.</p>
+        </section>
+
+        <div class="content-container">
+            <div class="main-content">
+                <section class="section">
+                    <h2 class="section-title">What is Consumer Law?</h2>
+                    <div class="section-content">
+                        <p>Consumer law refers to the body of laws that regulate the interactions between individual consumers and the businesses that sell goods and services. It's designed to ensure fair trade practices and protect consumers from fraud, unfair business practices, and dangerous products.</p>
+                        <p>These laws cover a wide range of issues including:</p>
+                        <ul>
+                            <li>Product safety and liability</li>
+                            <li>Unfair and deceptive trade practices</li>
+                            <li>Credit and debt collection</li>
+                            <li>Privacy and data protection</li>
+                            <li>Warranties and guarantees</li>
+                            <li>Auto sales and repairs</li>
+                            <li>Housing and mortgages</li>
+                        </ul>
+                        <p>Consumer protection laws exist at both the federal and state levels, with state laws often providing additional protections beyond federal requirements.</p>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Debt Collection Rights</h2>
+                    <div class="section-content">
+                        <p>The Fair Debt Collection Practices Act (FDCPA) is a federal law that protects consumers from abusive, unfair, or deceptive practices used to collect debts. Under this law, debt collectors:</p>
+                        <ul>
+                            <li>Cannot contact you before 8 a.m. or after 9 p.m. without your permission</li>
+                            <li>Cannot contact you at work if you tell them your employer disapproves</li>
+                            <li>Must stop contacting you if you request it in writing</li>
+                            <li>Cannot harass, oppress, or abuse you (including using threats, obscene language, or repeated calls)</li>
+                            <li>Cannot make false statements or misrepresentations</li>
+                            <li>Must provide validation of the debt when requested</li>
+                        </ul>
+                        <p>If a debt collector violates these rules, you can report them to the Consumer Financial Protection Bureau (CFPB) or your state attorney general's office, and you may have grounds for a lawsuit.</p>
+
+                        <div class="quick-tips">
+                            <h3>Quick Tips for Dealing with Debt Collectors</h3>
+                            <ul>
+                                <li>Keep records of all communications with debt collectors</li>
+                                <li>Request debt validation in writing within 30 days of first contact</li>
+                                <li>Consider sending correspondence via certified mail with return receipt</li>
+                                <li>Know the statute of limitations for debt in your state</li>
+                                <li>Be careful about making partial payments, as they can restart the statute of limitations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Credit Reporting Rights</h2>
+                    <div class="section-content">
+                        <p>The Fair Credit Reporting Act (FCRA) regulates how credit reporting agencies collect and share your information. Under this law, you have the right to:</p>
+                        <ul>
+                            <li>Access your credit report from each of the three major credit bureaus (Equifax, Experian, and TransUnion) once every 12 months for free at <a href="https://www.annualcreditreport.com">AnnualCreditReport.com</a></li>
+                            <li>Dispute inaccurate or incomplete information on your credit report</li>
+                            <li>Have outdated negative information removed (most negative information must be removed after 7 years, bankruptcies after 10 years)</li>
+                            <li>Be informed if information in your report has been used against you</li>
+                            <li>Opt out of prescreened credit offers</li>
+                            <li>Seek damages from violators of the FCRA</li>
+                        </ul>
+                        <p>If you find errors on your credit report, you should dispute them directly with the credit reporting agency. They must investigate your dispute within 30 days and correct any verified errors.</p>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-title">Step 1: Request Your Credit Reports</div>
+                                <p>Obtain free copies from AnnualCreditReport.com or contact bureaus directly.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-title">Step 2: Review for Errors</div>
+                                <p>Check for incorrect accounts, balances, payment history, or personal information.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-title">Step 3: File a Dispute</div>
+                                <p>Submit disputes online, by mail, or by phone with supporting documentation.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-title">Step 4: Follow Up</div>
+                                <p>The bureau must investigate within 30 days and notify you of results.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Unfair Business Practices</h2>
+                    <div class="section-content">
+                        <p>Federal and state laws prohibit businesses from engaging in unfair or deceptive acts or practices (often called "UDAP" laws). These can include:</p>
+                        <ul>
+                            <li>False or misleading advertising</li>
+                            <li>Bait-and-switch tactics</li>
+                            <li>Hidden fees or charges</li>
+                            <li>Misrepresenting products or services</li>
+                            <li>Unfair contract terms</li>
+                            <li>Pyramid schemes or other fraudulent business models</li>
+                        </ul>
+                        <p>The Federal Trade Commission (FTC) enforces these laws at the federal level, while state consumer protection agencies and attorneys general enforce state-specific UDAP laws.</p>
+                        <p>If you believe you've been the victim of an unfair business practice, you can file complaints with the FTC, your state consumer protection agency, or the Better Business Bureau. In many cases, you may also have the right to file a lawsuit against the business.</p>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Product Safety and Liability</h2>
+                    <div class="section-content">
+                        <p>Product liability laws hold manufacturers, distributors, and retailers responsible for injuries caused by defective or dangerous products. There are three main types of product liability claims:</p>
+                        <ul>
+                            <li><strong>Manufacturing Defects:</strong> Errors that occur during the production process</li>
+                            <li><strong>Design Defects:</strong> Flaws in the product's design that make it inherently unsafe</li>
+                            <li><strong>Failure to Warn:</strong> Insufficient instructions or warnings about non-obvious dangers</li>
+                        </ul>
+                        <p>If you're injured by a defective product, you may be entitled to compensation for medical expenses, lost wages, pain and suffering, and in some cases, punitive damages. Product liability cases often require expert testimony and technical evidence, so consulting with an attorney who specializes in this area is advisable.</p>
+                    </div>
+                </section>
+
+                <div class="cta-box">
+                    <h3>Need Help With a Consumer Law Issue?</h3>
+                    <p>Our AI assistant can help you understand your rights and guide you through the next steps.</p>
+                    <a href="../chat.html" class="cta-button">Ask LegalAssist AI</a>
+                </div>
+
+                <section class="section faq-section">
+                    <h2 class="section-title">Frequently Asked Questions</h2>
+                    <div class="faq-item">
+                        <div class="faq-question">What should I do if I receive a debt collection call for a debt I don't owe?</div>
+                        <div class="faq-answer">
+                            <p>If you receive a call about a debt you don't recognize, don't make any payments or acknowledge the debt. Instead:</p>
+                            <ol>
+                                <li>Request written validation of the debt within 30 days</li>
+                                <li>Check your credit reports to see if the debt appears there</li>
+                                <li>Keep records of all communications</li>
+                                <li>If the collector can't validate the debt, send a written request that they cease contact</li>
+                                <li>If the collector continues to pursue an invalid debt, file a complaint with the CFPB and your state attorney general</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">How can I fix errors on my credit report?</div>
+                        <div class="faq-answer">
+                            <p>To correct errors on your credit report:</p>
+                            <ol>
+                                <li>Contact both the credit reporting agency and the company that provided the incorrect information</li>
+                                <li>Clearly identify each disputed item in writing</li>
+                                <li>Include copies (not originals) of documents supporting your position</li>
+                                <li>Send your dispute via certified mail with return receipt requested</li>
+                                <li>Keep copies of all correspondence</li>
+                            </ol>
+                            <p>The credit bureaus typically must investigate within 30 days and provide you with written results. If the error isn't corrected, you can add a statement to your report explaining the dispute.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">What is a cooling-off period?</div>
+                        <div class="faq-answer">
+                            <p>A cooling-off period is a specific timeframe during which you can cancel certain contracts without penalty. Under FTC rules, you have a 3-business-day cooling-off period for:</p>
+                            <ul>
+                                <li>Door-to-door sales or sales made at temporary locations (like trade shows)</li>
+                                <li>Some home equity loans and lines of credit</li>
+                            </ul>
+                            <p>Many states have additional cooling-off periods for specific types of contracts, such as gym memberships, timeshares, and certain home improvement contracts. Check your state's consumer protection laws for details.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="disclaimer">
+                    <h3>Disclaimer</h3>
+                    <p>The information provided on this page is for general informational purposes only and is not intended to be legal advice. While we strive to provide accurate and up-to-date information, laws change frequently and vary by jurisdiction. The application of law depends on the specific facts of each case. You should consult with a qualified attorney for advice regarding your individual situation.</p>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="sidebar-box">
+                    <h3 class="sidebar-title">Key Consumer Protection Laws</h3>
+                    <div class="checklist-item">Fair Debt Collection Practices Act (FDCPA)</div>
+                    <div class="checklist-item">Fair Credit Reporting Act (FCRA)</div>
+                    <div class="checklist-item">Truth in Lending Act (TILA)</div>
+                    <div class="checklist-item">Fair Credit Billing Act (FCBA)</div>
+                    <div class="checklist-item">Magnuson-Moss Warranty Act</div>
+                    <div class="checklist-item">Consumer Product Safety Act</div>
+                    <div class="checklist-item">FTC Act (prohibits unfair/deceptive practices)</div>
+                </div>
+
+                <div class="sidebar-box">
+                    <h3 class="sidebar-title">Helpful Resources</h3>
+                    <a href="#" class="resource-link">Consumer Financial Protection Bureau</a>
+                    <a href="#" class="resource-link">Federal Trade Commission Consumer Information</a>
+                    <a href="#" class="resource-link">USA.gov Consumer Protection</a>
+                    <a href="#" class="resource-link">National Consumer Law Center</a>
+                    <a href="#" class="resource-link">Better Business Bureau</a>
+                </div>
+
+                <div class="sidebar-box">
+                    <h3 class="sidebar-title">Related Topics</h3>
+                    <a href="#" class="resource-link">Identity Theft Protection</a>
+                    <a href="#" class="resource-link">Bankruptcy Basics</a>
+                    <a href="#" class="resource-link">Home Foreclosure</a>
+                    <a href="#" class="resource-link">Auto Loans and Leases</a>
+                    <a href="#" class="resource-link">Student Loan Rights</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo">
+                    Legal<span>Assist</span> AI
+                </div>
+                <div class="description">
+                    Your trusted AI assistant for legal advice and resources.
+                </div>
+            </div>
+    
+            <div class="footer-links">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../chat.html">Home</a></li>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+    
+                <div class="footer-section">
+                    <h3>Legal Resources</h3>
+                    <ul>
+                        <li><a href="#">Divorce Laws</a></li>
+                        <li><a href="#">IPC Sections</a></li>
+                        <li><a href="#">Legal Advice</a></li>
+                        <li><a href="#">Contract Templates</a></li>
+                    </ul>
+                </div>
+    
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Email: <a href="mailto:support@legalassist.com">legalassistai@gmail.com</a></li>
+                        <li>Phone: +919074653054</li>
+                        <li>Address: Ilahia engineering and technology</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="social-media">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+    
+            <div class="copyright">
+                © 2025 LegalAssist AI. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple implementation for FAQ accordions
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isOpen = answer.style.display === 'block';
+                
+                // Close all answers
+                document.querySelectorAll('.faq-answer').forEach(item => {
+                    item.style.display = 'none';
+                });
+                
+                // If it wasn't open before, open it now
+                if (!isOpen) {
+                    answer.style.display = 'block';
+                    question.style.color = '#000';
+                    question.style.fontWeight = 'bold';
+                } else {
+                    question.style.color = '#c43e00';
+                    question.style.fontWeight = 'bold';
+                }
+            });
+        });
+        
+        // Hide all answers initially
+        document.querySelectorAll('.faq-answer').forEach(answer => {
+            answer.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
+ 

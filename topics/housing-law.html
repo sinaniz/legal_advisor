@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalAssist AI - Housing Law</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #fff9f5;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        header {
+            background-color: #000;            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: #fff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        nav a.active {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin: 2rem 0 3rem;
+            background-color: #fff;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid #000;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #000;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .breadcrumb {
+            display: flex;
+            margin-bottom: 2rem;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #000;
+            text-decoration: none;
+            margin-right: 0.5rem;
+        }
+
+        .breadcrumb span {
+            margin: 0 0.5rem;
+        }
+
+        .topic-overview {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .topic-overview h2 {
+            color: #000;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .topic-overview p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .subtopics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .subtopic-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            border-top: 4px solid #666;
+        }
+
+        .subtopic-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .subtopic-content {
+            padding: 1.5rem;
+        }
+
+        .subtopic-title {
+            font-size: 1.4rem;
+            color: #000;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .subtopic-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .subtopic-list {
+            padding-left: 1.5rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .subtopic-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-section h2 {
+            color: #000;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #fff;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-question {
+            font-size: 1.2rem;
+            color: #000;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .resources {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .resources h2 {
+            color: #000;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .resources-list {
+            padding-left: 1.5rem;
+            color: #666;
+        }
+
+        .resources-list li {
+            margin-bottom: 1rem;
+        }
+
+        .resources-list a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .resources-list a:hover {
+            text-decoration: underline;
+        }
+
+        .disclaimer {
+            background-color: #fff;
+            border-left: 4px solid #000;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .disclaimer h3 {
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .disclaimer p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .contact-section {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .contact-section h2 {
+            color: #000;
+            margin-bottom: 1rem;
+        }
+
+        .contact-section p {
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-button {
+            display: inline-block;
+            background-color: #000;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-button:hover {
+            background-color: #000;        }
+
+  .footer-links {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-section {
+    flex: 1;
+    margin: 0 15px;
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 14px;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+    color: #999;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    color: #fff;
+}
+
+/* Social Media Icons */
+.social-media {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.social-icon {
+    color: #fff;
+    font-size: 24px;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section {
+        margin-bottom: 30px;
+    }
+
+    .logo {
+        font-size: 28px;
+    }
+
+    .description {
+        font-size: 12px;
+    }
+
+    .footer-section h3 {
+        font-size: 16px;
+    }
+}
+
+        .copyright {
+            margin-top: 1rem;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            .subtopics {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Legal<span>Assist</span> AI</div>
+        <nav>
+            <ul>
+                <li><a href="../chat.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../legaltopics.html" class="active">Legal Topics</a></li>
+                <li><a href="../resourses.html">Resources</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="breadcrumb">
+            <a href="../legaltopics.html">Legal Topics</a> <span>></span> Housing Law
+        </div>
+
+        <section class="page-header">
+            <h1>Housing Law</h1>
+            <p>Understanding your rights and responsibilities as a tenant or landlord</p>
+        </section>
+
+        <section class="topic-overview">
+            <h2>Overview of Housing Law</h2>
+            <p>Housing law encompasses the legal rights and obligations that govern the relationship between landlords and tenants. These laws vary by state and locality but generally cover aspects such as leasing agreements, rent control, evictions, security deposits, habitability standards, fair housing, and discrimination protection.</p>
+            <p>Whether you're a tenant facing eviction, a landlord dealing with a non-paying tenant, or someone looking to understand your rights in a rental situation, knowledge of housing law is essential to protecting your interests and resolving disputes fairly.</p>
+        </section>
+
+        <section class="subtopics">
+            <div class="subtopic-card">
+                <div class="subtopic-content">
+                    <h3 class="subtopic-title">Tenant Rights</h3>
+                    <p class="subtopic-description">Tenants have specific legal protections regarding their living conditions, privacy, and security.</p>
+                    <ul class="subtopic-list">
+                        <li>Right to habitable living conditions</li>
+                        <li>Protection against unlawful eviction</li>
+                        <li>Right to privacy and proper notice before landlord entry</li>
+                        <li>Protection against discrimination</li>
+                        <li>Right to request repairs and maintenance</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="subtopic-card">
+                <div class="subtopic-content">
+                    <h3 class="subtopic-title">Landlord Responsibilities</h3>
+                    <p class="subtopic-description">Landlords must maintain certain standards and follow specific procedures in managing rental properties.</p>
+                    <ul class="subtopic-list">
+                        <li>Maintaining habitable living conditions</li>
+                        <li>Making necessary repairs in a timely manner</li>
+                        <li>Providing proper notice before entering a rental unit</li>
+                        <li>Following legal procedures for eviction</li>
+                        <li>Properly handling security deposits</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="subtopic-card">
+                <div class="subtopic-content">
+                    <h3 class="subtopic-title">Lease Agreements</h3>
+                    <p class="subtopic-description">A lease is a legally binding contract that outlines the terms and conditions of a rental arrangement.</p>
+                    <ul class="subtopic-list">
+                        <li>Required and optional lease terms</li>
+                        <li>Lease renewal and termination</li>
+                        <li>Rent increases and payment terms</li>
+                        <li>Subletting and assignment provisions</li>
+                        <li>Breaking a lease legally</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="subtopic-card">
+                <div class="subtopic-content">
+                    <h3 class="subtopic-title">Eviction Process</h3>
+                    <p class="subtopic-description">Eviction is a legal process that must follow specific procedures and timelines.</p>
+                    <ul class="subtopic-list">
+                        <li>Legal grounds for eviction</li>
+                        <li>Required notices and timeframes</li>
+                        <li>Court proceedings and tenant defenses</li>
+                        <li>Eviction moratoriums and special circumstances</li>
+                        <li>Post-eviction rights and responsibilities</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="subtopic-card">
+                <div class="subtopic-content">
+                    <h3 class="subtopic-title">Security Deposits</h3>
+                    <p class="subtopic-description">Laws regulate how security deposits are collected, held, used, and returned.</p>
+                    <ul class="subtopic-list">
+                        <li>Maximum deposit amounts</li>
+                        <li>Allowable deductions</li>
+                        <li>Return timeframes and requirements</li>
+                        <li>Interest payments on deposits</li>
+                        <li>Dispute resolution for deposit disagreements</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="subtopic-card">
+                <div class="subtopic-content">
+                    <h3 class="subtopic-title">Fair Housing and Discrimination</h3>
+                    <p class="subtopic-description">Laws prohibit discrimination in housing based on protected characteristics.</p>
+                    <ul class="subtopic-list">
+                        <li>Protected classes under federal and state law</li>
+                        <li>Types of prohibited discriminatory practices</li>
+                        <li>Reasonable accommodation requirements</li>
+                        <li>Filing a discrimination complaint</li>
+                        <li>Remedies for housing discrimination</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <h3 class="faq-question">Can a landlord enter my apartment without permission?</h3>
+                <p class="faq-answer">Generally, landlords must provide advance notice before entering your apartment, typically 24-48 hours depending on state law. Exceptions exist for emergencies that threaten safety or property. Check your lease and local laws for specific requirements in your area.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3 class="faq-question">What can I do if my landlord won't make necessary repairs?</h3>
+                <p class="faq-answer">First, document the issue and send a written repair request to your landlord. If they fail to respond, you may have several options depending on local laws: withholding rent (in some jurisdictions), repair and deduct, filing a complaint with local housing authorities, or seeking legal assistance. Be aware that specific procedures must be followed for these remedies.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3 class="faq-question">Can a landlord raise my rent at any time?</h3>
+                <p class="faq-answer">If you have a lease, your rent generally cannot be increased until the lease term ends, unless the lease specifically allows for increases. For month-to-month tenancies, landlords typically must provide advance notice of rent increases (usually 30-60 days). Some cities and states have rent control laws that limit how much and how often rent can be increased.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3 class="faq-question">What are valid reasons for eviction?</h3>
+                <p class="faq-answer">Common legal grounds for eviction include: non-payment of rent, lease violations, property damage beyond normal wear and tear, illegal activity on the premises, expiration of lease term without renewal, or if the landlord wishes to personally occupy the unit. Even with valid reasons, landlords must follow proper legal procedures and cannot engage in "self-help" evictions.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3 class="faq-question">How quickly must a landlord return my security deposit?</h3>
+                <p class="faq-answer">Timeframes vary by state, typically ranging from 14 to 60 days after you move out. Landlords must usually provide an itemized list of any deductions. If they fail to return your deposit within the required time or make improper deductions, many states allow tenants to sue for the deposit plus additional damages.</p>
+            </div>
+        </section>
+
+        <section class="resources">
+            <h2>Additional Resources</h2>
+            <ul class="resources-list">
+                <li><a href="#">HUD Fair Housing and Equal Opportunity Office</a> - Federal housing discrimination resources</li>
+                <li><a href="#">Legal Aid Housing Rights Clinic</a> - Free or low-cost legal assistance for housing issues</li>
+                <li><a href="#">State Tenant Rights Association</a> - Advocacy and education for renters</li>
+                <li><a href="#">National Apartment Association</a> - Resources for landlords and property managers</li>
+                <li><a href="#">Housing Court Self-Help Center</a> - Forms and guidance for housing court proceedings</li>
+            </ul>
+        </section>
+
+        <div class="disclaimer">
+            <h3>Legal Disclaimer</h3>
+            <p>This information is provided for educational purposes only and does not constitute legal advice. Housing laws vary significantly by location and individual circumstances. For specific guidance on your situation, please consult with a qualified attorney licensed in your jurisdiction.</p>
+        </div>
+
+        <section class="contact-section">
+            <h2>Need Personalized Legal Help?</h2>
+            <p>Our AI assistant can provide general information, but complex situations may require professional legal counsel.</p>
+            
+        </section>
+    </main>
+
+   <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo">
+                    Legal<span>Assist</span> AI
+                </div>
+                <div class="description">
+                    Your trusted AI assistant for legal advice and resources.
+                </div>
+            </div>
+    
+            <div class="footer-links">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../chat.html">Home</a></li>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+    
+                <div class="footer-section">
+                    <h3>Legal Resources</h3>
+                    <ul>
+                        <li><a href="#">Divorce Laws</a></li>
+                        <li><a href="#">IPC Sections</a></li>
+                        <li><a href="#">Legal Advice</a></li>
+                        <li><a href="#">Contract Templates</a></li>
+                    </ul>
+                </div>
+    
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Email: <a href="mailto:support@legalassist.com">legalassistai@gmail.com</a></li>
+                        <li>Phone: +919074653054</li>
+                        <li>Address: Ilahia engineering and technology</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="social-media">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+    
+            <div class="copyright">
+                © 2025 LegalAssist AI. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

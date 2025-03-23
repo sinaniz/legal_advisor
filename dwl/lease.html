@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Residential Lease Agreement Template</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 30px;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        input[type="text"], 
+        input[type="date"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .signature-box {
+            width: 45%;
+            border-top: 1px solid #000;
+            padding-top: 5px;
+            margin-top: 50px;
+            text-align: center;
+        }
+        .btn {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        .download-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .countdown {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #333;
+            display: none;
+        }
+        #agreement-content {
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        #download-ready {
+            display: none;
+            color: green;
+            font-weight: bold;
+        }
+        .resource-button {
+            display: inline-block;
+            background-color: #138ebf;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .resource-button:hover {
+            background-color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Residential Lease Agreement</h1>
+        <p>Fill in the details below to create your customized lease agreement</p>
+    </div>
+
+    <div id="agreement-content">
+        <div class="form-section">
+            <h2>1. Parties</h2>
+            <div class="form-group">
+                <label for="landlord-name">Landlord/Owner Name:</label>
+                <input type="text" id="landlord-name" placeholder="Full legal name">
+            </div>
+            <div class="form-group">
+                <label for="tenant-name">Tenant Name(s):</label>
+                <input type="text" id="tenant-name" placeholder="Full legal name of all tenants">
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>2. Property</h2>
+            <div class="form-group">
+                <label for="property-address">Property Address:</label>
+                <input type="text" id="property-address" placeholder="Street address, city, state, zip code">
+            </div>
+            <div class="form-group">
+                <label for="property-description">Property Description:</label>
+                <textarea id="property-description" rows="3" placeholder="Include details about rooms, bathrooms, parking, etc."></textarea>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>3. Term</h2>
+            <div class="form-group">
+                <label for="lease-start">Lease Start Date:</label>
+                <input type="date" id="lease-start">
+            </div>
+            <div class="form-group">
+                <label for="lease-end">Lease End Date:</label>
+                <input type="date" id="lease-end">
+            </div>
+            <div class="form-group">
+                <label for="lease-type">Lease Type:</label>
+                <select id="lease-type" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                    <option value="fixed">Fixed Term</option>
+                    <option value="month">Month-to-Month</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>4. Rent</h2>
+            <div class="form-group">
+                <label for="monthly-rent">Monthly Rent Amount ($):</label>
+                <input type="number" id="monthly-rent" placeholder="0.00">
+            </div>
+            <div class="form-group">
+                <label for="rent-due-date">Rent Due Date:</label>
+                <input type="text" id="rent-due-date" placeholder="e.g., 1st of each month">
+            </div>
+            <div class="form-group">
+                <label for="late-fee">Late Fee Amount ($):</label>
+                <input type="number" id="late-fee" placeholder="0.00">
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>5. Security Deposit</h2>
+            <div class="form-group">
+                <label for="security-deposit">Security Deposit Amount ($):</label>
+                <input type="number" id="security-deposit" placeholder="0.00">
+            </div>
+            <div class="form-group">
+                <label for="deposit-return">Days to Return Deposit After Move-Out:</label>
+                <input type="number" id="deposit-return" placeholder="e.g., 30">
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>6. Utilities and Services</h2>
+            <div class="form-group">
+                <label>Utilities Paid by Landlord:</label>
+                <div>
+                    <input type="checkbox" id="water"> <label for="water" style="display: inline;">Water</label>
+                    <input type="checkbox" id="electricity"> <label for="electricity" style="display: inline;">Electricity</label>
+                    <input type="checkbox" id="gas"> <label for="gas" style="display: inline;">Gas</label>
+                    <input type="checkbox" id="trash"> <label for="trash" style="display: inline;">Trash</label>
+                    <input type="checkbox" id="internet"> <label for="internet" style="display: inline;">Internet</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="utility-notes">Additional Notes on Utilities:</label>
+                <textarea id="utility-notes" rows="3" placeholder="Any special arrangements or clarifications"></textarea>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>7. Additional Terms</h2>
+            <div class="form-group">
+                <label for="pet-policy">Pet Policy:</label>
+                <textarea id="pet-policy" rows="3" placeholder="Allowed pets, deposits, restrictions"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="maintenance">Maintenance Responsibilities:</label>
+                <textarea id="maintenance" rows="3" placeholder="Who is responsible for what maintenance tasks"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="special-terms">Special Terms and Conditions:</label>
+                <textarea id="special-terms" rows="5" placeholder="Any additional clauses or agreements"></textarea>
+            </div>
+        </div>
+
+        <div class="signatures">
+            <div class="signature-box">
+                <p>Landlord Signature</p>
+                <p>Date: ________________</p>
+            </div>
+            <div class="signature-box">
+                <p>Tenant Signature</p>
+                <p>Date: ________________</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="download-section">
+        <button id="generate-btn" class="btn">Generate Lease Agreement</button>
+        <div class="countdown" id="timer">5</div>
+        <p id="download-ready">Your document is ready!</p>
+        <a id="download-btn" class="btn" style="display: none;">Download Lease Agreement</a>
+    </div>
+
+    <script>
+        document.getElementById('generate-btn').addEventListener('click', function() {
+            // Show countdown
+            document.getElementById('timer').style.display = 'block';
+            document.getElementById('generate-btn').disabled = true;
+            
+            // Start countdown
+            let timeLeft = 5;
+            const countdownTimer = setInterval(function() {
+                document.getElementById('timer').textContent = timeLeft;
+                timeLeft--;
+                
+                if (timeLeft < 0) {
+                    // Stop the countdown
+                    clearInterval(countdownTimer);
+                    
+                    // Hide the timer
+                    document.getElementById('timer').style.display = 'none';
+                    
+                    // Show ready message and download button
+                    document.getElementById('download-ready').style.display = 'block';
+                    document.getElementById('download-btn').style.display = 'inline-block';
+                }
+            }, 1000);
+        });
+
+        document.getElementById('download-btn').addEventListener('click', function() {
+            // Get the form content
+            const leaseContent = document.getElementById('agreement-content').outerHTML;
+            
+            // Create the full HTML document
+            const fullDocument = `
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+                    <meta charset="UTF-8">
+                    <title>Residential Lease Agreement</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 20px; }
+                        .form-section { margin-bottom: 20px; }
+                        h2 { color: #2c3e50; }
+                        .signatures { display: flex; justify-content: space-between; margin-top: 30px; }
+                        .signature-box { width: 45%; border-top: 1px solid #000; padding-top: 5px; margin-top: 50px; text-align: center; }
+                    </style>
+                </head>
+                <body>
+                    <h1 style="text-align: center;">RESIDENTIAL LEASE AGREEMENT</h1>
+                    ${leaseContent}
+                </body>
+                </html>
+            `;
+            
+            // Create a Blob with the content
+            const blob = new Blob([fullDocument], { type: 'text/html' });
+            
+            // Create a temporary URL for the Blob
+            const url = URL.createObjectURL(blob);
+            
+            // Create a temporary link element
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Residential_Lease_Agreement.html';
+            
+            // Trigger the download
+            document.body.appendChild(a);
+            a.click();
+            
+            // Clean up
+            setTimeout(function() {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 0);
+        });
+    </script>
+    <a href="../resourses.html" class="resource-button">Back to Resources</a>
+</body>
+</html>

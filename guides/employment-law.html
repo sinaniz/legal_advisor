@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalAssist AI - Employment Law Basics</title>
+    <!-- Same CSS as in tenant-rights.html -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #fff9f5;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        header {
+            background-color: #000;            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: #fff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        nav a.active {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin: 2rem 0 4rem;
+            background-color: #fff;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid #000;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #000;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .guide-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 3rem;
+        }
+
+        .guide-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .guide-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .guide-section h2 {
+            color: #000;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #fff;
+        }
+
+        .guide-section h3 {
+            color: #000;
+            font-size: 1.4rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .guide-section p {
+            color: #555;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .guide-section ul, .guide-section ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .guide-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .callout-box {
+            background-color: #fff;
+            border-left: 4px solid #000;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+
+        .callout-box h4 {
+            color: #000;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .callout-box p {
+            margin-bottom: 0;
+            font-size: 1rem;
+        }
+
+        .back-to-resources {
+            display: inline-block;
+            margin-top: 2rem;
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .back-to-resources:hover {
+            color: #000;
+        }
+
+  .footer-links {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-section {
+    flex: 1;
+    margin: 0 15px;
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 14px;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+    color: #999;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    color: #fff;
+}
+
+/* Social Media Icons */
+.social-media {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.social-icon {
+    color: #fff;
+    font-size: 24px;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section {
+        margin-bottom: 30px;
+    }
+
+    .logo {
+        font-size: 28px;
+    }
+
+    .description {
+        font-size: 12px;
+    }
+
+    .footer-section h3 {
+        font-size: 16px;
+    }
+}
+
+        .copyright {
+            margin-top: 1rem;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+        
+        .resource-button {
+            display: inline-block;
+            background-color: #000;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .resource-button:hover {
+            background-color: #000;        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .guide-section h2 {
+                font-size: 1.6rem;
+            }
+
+            .guide-section h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Legal<span>Assist</span> AI</div>
+        <nav>
+            <ul>
+                <li><a href="../chat.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../legaltopics.html">Legal Topics</a></li>
+                <li><a href="../resourses.html">Resources</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Employment Law Basics</h1>
+            <p>Understand your workplace rights, protections against discrimination, wage requirements, and what to do if your rights are violated.</p>
+        </section>
+
+        <div class="guide-content">
+            <section class="guide-section">
+                <h2>Types of Employment Relationships</h2>
+                <p>Understanding your employment classification is crucial as it affects your rights, benefits, and tax obligations.</p>
+                
+                <h3>Employee vs. Independent Contractor</h3>
+                <p>Employees typically:</p>
+                <ul>
+                    <li>Work under the direction and control of the employer</li>
+                    <li>Use employer-provided tools and equipment</li>
+                    <li>Receive regular wages or salary</li>
+                    <li>Have taxes withheld from their paychecks</li>
+                    <li>May receive benefits like health insurance and paid time off</li>
+                    <li>Are covered by most employment laws</li>
+                </ul>
+
+                <p>Independent contractors typically:</p>
+                <ul>
+                    <li>Control how they perform their work</li>
+                    <li>Use their own tools and equipment</li>
+                    <li>Are paid by project or contract</li>
+                    <li>Pay their own self-employment taxes</li>
+                    <li>Don't receive employee benefits</li>
+                    <li>Have limited coverage under employment laws</li>
+                </ul>
+
+                <div class="callout-box">
+                    <h4>Misclassification Warning</h4>
+                    <p>Employers sometimes misclassify employees as independent contractors to avoid taxes and benefits. This is illegal. The Department of Labor and IRS use multiple factors to determine proper classification, not just what your contract states.</p>
+                </div>
+
+                <h3>At-Will Employment</h3>
+                <p>Most U.S. employees work "at-will," meaning:</p>
+                <ul>
+                    <li>Either party can end the employment relationship at any time</li>
+                    <li>Termination can occur with or without cause</li>
+                    <li>No notice is legally required (though often given as a courtesy)</li>
+                </ul>
+                
+                <p>Important exceptions to at-will employment include:</p>
+                <ul>
+                    <li>Employment contracts specifying duration or termination terms</li>
+                    <li>Collective bargaining agreements (union contracts)</li>
+                    <li>Terminations that violate anti-discrimination laws</li>
+                    <li>Terminations in retaliation for exercising legal rights</li>
+                    <li>Terminations that violate public policy</li>
+                </ul>
+            </section>
+
+            <section class="guide-section">
+                <h2>Wage and Hour Laws</h2>
+                <p>The Fair Labor Standards Act (FLSA) establishes minimum wage, overtime pay, recordkeeping, and youth employment standards.</p>
+                
+                <h3>Minimum Wage</h3>
+                <p>The federal minimum wage is $7.25 per hour, but many states and cities have higher rates. Employers must pay whichever is highest (federal, state, or local).</p>
+                
+                <h3>Overtime Pay</h3>
+                <p>Non-exempt employees must receive overtime pay at 1.5 times their regular rate for hours worked beyond 40 in a workweek. Key points about overtime:</p>
+                <ul>
+                    <li>Overtime is calculated weekly, not daily (except in some states like California)</li>
+                    <li>Employers can't avoid overtime by averaging hours across multiple weeks</li>
+                    <li>Unauthorized overtime must still be paid (though employers can discipline for rule violations)</li>
+                    <li>"Off-the-clock" work is illegal – all work time must be paid</li>
+                </ul>
+
+                <h3>Exempt vs. Non-Exempt Classification</h3>
+                <p>Exempt employees (not entitled to overtime) must meet ALL of these criteria:</p>
+                <ul>
+                    <li>Be paid on a salary basis (not hourly)</li>
+                    <li>Earn at least $684 per week ($35,568 annually)</li>
+                    <li>Perform primarily executive, administrative, professional, computer, or outside sales duties as defined by regulations</li>
+                </ul>
+
+                <div class="callout-box">
+                    <h4>Important Note</h4>
+                    <p>Job titles alone don't determine exempt status. The actual job duties and salary must meet specific legal criteria. Many employees are incorrectly classified as exempt.</p>
+                </div>
+            </section>
+
+            <section class="guide-section">
+                <h2>Workplace Discrimination</h2>
+                <p>Federal laws prohibit employment discrimination based on protected characteristics:</p>
+                <ul>
+                    <li>Race, color, and national origin</li>
+                    <li>Sex (including pregnancy, sexual orientation, and gender identity)</li>
+                    <li>Religion</li>
+                    <li>Age (40 and older)</li>
+                    <li>Disability</li>
+                    <li>Genetic information</li>
+                </ul>
+
+                <p>Many states and cities extend protections to additional characteristics such as marital status, political affiliation, or criminal history.</p>
+
+                <h3>Types of Prohibited Discrimination</h3>
+                <p>Employment discrimination laws cover:</p>
+                <ul>
+                    <li>Hiring and firing</li>
+                    <li>Compensation and benefits</li>
+                    <li>Job assignments and promotions</li>
+                    <li>Training and development opportunities</li>
+                    <li>Any other term or condition of employment</li>
+                </ul>
+
+                <h3>Harassment</h3>
+                <p>Workplace harassment is a form of discrimination that includes:</p>
+                <ul>
+                    <li><strong>Quid pro quo harassment:</strong> When job benefits are conditioned on submitting to unwelcome conduct</li>
+                    <li><strong>Hostile work environment:</strong> When unwelcome conduct is severe or pervasive enough to create an intimidating or offensive work environment</li>
+                </ul>
+
+                <h3>Reporting Discrimination</h3>
+                <p>If you believe you've experienced workplace discrimination:</p>
+                <ol>
+                    <li>Document incidents with dates, times, locations, and witnesses</li>
+                    <li>Follow your company's complaint procedures</li>
+                    <li>File a charge with the Equal Employment Opportunity Commission (EEOC) within 180 days (or 300 days in states with their own anti-discrimination laws)</li>
+                    <li>Consider consulting with an employment attorney</li>
+                </ol>
+            </section>
+
+            <section class="guide-section">
+                <h2>Family and Medical Leave</h2>
+                <p>The Family and Medical Leave Act (FMLA) provides eligible employees with unpaid, job-protected leave for specific family and medical reasons.</p>
+                
+                
+
+
+                <a href="../resourses.html" class="resource-button">Back to Resources</a>

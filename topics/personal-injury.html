@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalAssist AI - Personal Injury Law</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #fff9f5;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        header {
+            background-color: #000;            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: #fff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        nav a.active {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin: 2rem 0 3rem;
+            background-color: #fff;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid #000;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #000;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Topic Overview Section */
+        .topic-overview {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid #000;
+        }
+
+        .topic-overview h2 {
+            color: #000;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .topic-overview p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        /* Key Concepts Section */
+        .key-concepts {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .concept-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-top: 3px solid #000;
+        }
+
+        .concept-card h3 {
+            color: #000;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .concept-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Common Questions Section */
+        .common-questions {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .common-questions h2 {
+            color: #000;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        .accordion {
+            margin-bottom: 1rem;
+        }
+
+        .accordion-item {
+            border: 1px solid #ffd6c0;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background-color: #fff;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            color: #000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-header:hover {
+            background-color: #ffd6c0;
+        }
+
+        .accordion-header::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .accordion-content {
+            padding: 1.5rem;
+            display: none;
+            background-color: white;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .accordion-content.active {
+            display: block;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .timeline-section h2 {
+            color: #000;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 0 0 0 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background-color: #000;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #000;
+            border: 3px solid #fff9f5;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item h3 {
+            color: #000;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .timeline-item p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Resources Section */
+        .resources-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .resources-section h2 {
+            color: #000;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .resource-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            background-color: #ffd6c0;
+        }
+
+        .resource-card h3 {
+            color: #000;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .resource-card p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .resource-btn {
+            display: inline-block;
+            background-color: #000;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .resource-btn:hover {
+            background-color: #000;        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid #000;
+        }
+
+        .cta-section h2 {
+            color: #000;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .cta-section p {
+            color: #555;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background-color: #000;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background-color: #000;        }
+
+        /* Disclaimer */
+        .disclaimer {
+            background-color: #fff;
+            border-left: 4px solid #000;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .disclaimer h3 {
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .disclaimer p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+  .footer-links {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-section {
+    flex: 1;
+    margin: 0 15px;
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 14px;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+    color: #999;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    color: #fff;
+}
+
+/* Social Media Icons */
+.social-media {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.social-icon {
+    color: #fff;
+    font-size: 24px;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section {
+        margin-bottom: 30px;
+    }
+
+    .logo {
+        font-size: 28px;
+    }
+
+    .description {
+        font-size: 12px;
+    }
+
+    .footer-section h3 {
+        font-size: 16px;
+    }
+}
+
+        .copyright {
+            margin-top: 1rem;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .key-concepts {
+                grid-template-columns: 1fr;
+            }
+            
+            .resources-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Legal<span>Assist</span> AI</div>
+        <nav>
+            <ul>
+                <li><a href="../chat.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../legaltopics.html">Legal Topics</a></li>
+                <li><a href="../resourses.html">Resources</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Personal Injury Law</h1>
+            <p>Understanding your rights and options after an injury caused by someone else's negligence.</p>
+        </section>
+
+        <section class="topic-overview">
+            <h2>What is Personal Injury Law?</h2>
+            <p>Personal injury law covers situations where an individual has been injured physically, emotionally, or financially due to someone else's negligence, recklessness, or intentional actions. This area of law allows injured parties to seek compensation for their losses through the civil court system.</p>
+            <p>Unlike criminal law, which punishes offenders through jail time or fines paid to the government, personal injury law is designed to make the injured person "whole" by providing financial compensation for their damages. This compensation can cover medical expenses, lost wages, pain and suffering, and other related costs.</p>
+        </section>
+
+        <section class="key-concepts">
+            <div class="concept-card">
+                <h3>Negligence</h3>
+                <p>Negligence is the cornerstone of most personal injury cases. To prove negligence, you must show that:</p>
+                <ul style="margin-left: 20px; margin-top: 10px; color: #555; line-height: 1.6;">
+                    <li>The defendant owed you a duty of care</li>
+                    <li>They breached that duty</li>
+                    <li>Their breach caused your injuries</li>
+                    <li>You suffered actual damages as a result</li>
+                </ul>
+            </div>
+
+            <div class="concept-card">
+                <h3>Comparative Fault</h3>
+                <p>Many states follow comparative fault rules, where your compensation may be reduced by your percentage of fault in the accident. For example, if you're found 20% responsible for an accident and your damages are $100,000, you may only recover $80,000.</p>
+            </div>
+
+            <div class="concept-card">
+                <h3>Statute of Limitations</h3>
+                <p>Personal injury claims must be filed within a specific time period, usually 1-3 years depending on your state. Missing this deadline typically means losing your right to seek compensation, with few exceptions.</p>
+            </div>
+
+            <div class="concept-card">
+                <h3>Damages</h3>
+                <p>Damages in personal injury cases can include:</p>
+                <ul style="margin-left: 20px; margin-top: 10px; color: #555; line-height: 1.6;">
+                    <li>Medical expenses (past and future)</li>
+                    <li>Lost wages and diminished earning capacity</li>
+                    <li>Pain and suffering</li>
+                    <li>Emotional distress</li>
+                    <li>Loss of enjoyment of life</li>
+                    <li>Property damage</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="common-questions">
+            <h2>Common Questions About Personal Injury Cases</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">How much is my case worth?</div>
+                    <div class="accordion-content">
+                        <p>The value of your case depends on multiple factors, including the severity of your injuries, long-term impact on your life, clear liability, available insurance coverage, and your location. Minor injuries might result in compensation of a few thousand dollars, while catastrophic injuries could lead to multi-million dollar settlements. An experienced personal injury attorney can provide a more accurate estimate based on your specific circumstances.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">Do I need to go to court?</div>
+                    <div class="accordion-content">
+                        <p>Most personal injury cases settle out of court. In fact, approximately 95% of personal injury cases reach a settlement before trial. However, having an attorney who is prepared to go to trial if necessary can strengthen your negotiating position and potentially lead to a better settlement offer.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">How long will my case take?</div>
+                    <div class="accordion-content">
+                        <p>The timeline for a personal injury case varies widely depending on complexity, jurisdiction, and whether it settles or goes to trial. Simple cases might resolve in a few months, while complex cases can take years. It's generally advisable to wait until you've reached maximum medical improvement before settling, as this ensures all your damages are accounted for.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">Can I still recover damages if I was partly at fault?</div>
+                    <div class="accordion-content">
+                        <p>In many states, you can still recover damages even if you were partly at fault, thanks to comparative negligence laws. However, your compensation will be reduced by your percentage of fault. Some states follow a "modified comparative negligence" rule, which prevents recovery if you're more than 50% or 51% responsible. A few states follow "contributory negligence," which bars recovery if you contributed to the accident in any way.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <h2>Timeline of a Personal Injury Case</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Accident and Medical Treatment</h3>
+                    <p>Seek medical attention immediately after an injury. Document everything related to the accident and your injuries, including photos, witness information, and medical records.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Consultation with an Attorney</h3>
+                    <p>Meet with a personal injury attorney to discuss your case. Most offer free initial consultations and work on a contingency fee basis, meaning they only get paid if you win.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Investigation</h3>
+                    <p>Your attorney will investigate your claim, gathering evidence, interviewing witnesses, consulting experts, and reviewing medical records.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Demand and Negotiation</h3>
+                    <p>Once you've reached maximum medical improvement, your attorney will send a demand letter to the opposing party, beginning the negotiation process.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Filing a Lawsuit</h3>
+                    <p>If a fair settlement cannot be reached, your attorney will file a lawsuit on your behalf, beginning the formal legal process.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Discovery</h3>
+                    <p>Both sides exchange information through written questions, document requests, and depositions.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Mediation/Settlement</h3>
+                    <p>Many cases settle during or after discovery. Mediation may be used to help reach a settlement.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Trial</h3>
+                    <p>If settlement attempts fail, your case will go to trial, where a judge or jury will determine liability and damages.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Collection</h3>
+                    <p>After a verdict or settlement, your attorney will help collect your compensation and resolve any liens against your recovery.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="resources-section">
+            <h2>Helpful Resources</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3>Find a Personal Injury Attorney</h3>
+                    <p>Connect with experienced attorneys specializing in personal injury cases in your area.</p>
+                    <a href="#" class="resource-btn">Find a Lawyer</a>
+                </div>
+                <div class="resource-card">
+                    <h3>Accident Checklist</h3>
+                    <p>Download our step-by-step guide on what to do immediately following an accident.</p>
+                    <a href="#" class="resource-btn">Download Guide</a>
+                </div>
+                <div class="resource-card">
+                    <h3>State-Specific Laws</h3>
+                    <p>Learn about personal injury laws specific to your state, including statutes of limitations.</p>
+                    <a href="#" class="resource-btn">View Laws</a>
+                </div>
+                <div class="resource-card">
+                    <h3>Settlement Calculator</h3>
+                    <p>Get a rough estimate of what your case might be worth based on your specific circumstances.</p>
+                    <a href="#" class="resource-btn">Calculate Now</a>
+                </div>
+                <div class="resource-card">
+                    <h3>Medical Record Organizer</h3>
+                    <p>Tools to help track and organize your medical treatments, expenses, and recovery progress.</p>
+                    <a href="#" class="resource-btn">Access Tools</a>
+                </div>
+                <div class="resource-card">
+                    <h3>Support Groups</h3>
+                    <p>Connect with others who have experienced similar injuries and recovery processes.</p>
+                    <a href="#" class="resource-btn">Join Community</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="disclaimer">
+            <h3>Legal Disclaimer</h3>
+            <p>The information provided on this website is for general informational purposes only and does not constitute legal advice. Every case is unique, and results will vary based on the specific facts and circumstances. This website is not intended to create an attorney-client relationship. Please consult with a qualified attorney for advice specific to your situation.</p>
+        </div>
+
+        <section class="cta-section">
+            <h2>Get Expert Legal Assistance Today</h2>
+            <p>Don't navigate the complex world of personal injury law alone. Our network of experienced attorneys can help you understand your rights and fight for the compensation you deserve.</p>
+            <a href="../contact.html" class="cta-btn">Schedule a Free Consultation</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="logo">Legal<span>Assist</span> AI</div>
+            <div class="footer-links">
+                <a href="../chat.html">Home</a>
+                <a href="../legaltopics.html">Legal Topics</a>
+                <a href="../about.html">About Us</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+            <p class="copyright">© 2025 LegalAssist AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function() {
+                // Toggle the active class on the content
+                const content = this.nextElementSibling;
+                content.classList.toggle('active');
+                
+                // Change the plus/minus icon
+                if (content.classList.contains('active')) {
+                    this.style.setProperty('--after-content', '"−"');
+                } else {
+                    this.style.setProperty('--after-content', '"+"');
+                }
+                
+                // Close other open accordions
+                document.querySelectorAll('.accordion-content').forEach(item => {
+                    if (item !== content && item.classList.contains('active')) {
+                        item.classList.remove('active');
+                        item.previousElementSibling.style.setProperty('--after-content', '"+"');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalAssist AI - Criminal Law</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #fff9f5;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        header {
+            background-color: #000;            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: #fff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        nav a.active {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .breadcrumb {
+            display: flex;
+            margin-bottom: 2rem;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #000;
+            text-decoration: none;
+            margin-right: 0.5rem;
+        }
+
+        .breadcrumb span {
+            margin: 0 0.5rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin: 1rem 0 3rem;
+            background-color: #fff;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid #000;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #000;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .content-layout {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 2rem;
+        }
+
+        .sidebar {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            border-top: 4px solid #000;
+        }
+
+        .sidebar h3 {
+            color: #000;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #fff;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 0.5rem;
+            color: #555;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar-menu a:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .sidebar-menu a.active {
+            background-color: #fff;
+            color: #000;
+            font-weight: 500;
+        }
+
+        .main-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid #000;
+        }
+
+        .content-section {
+            margin-bottom: 3rem;
+        }
+
+        .content-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-section h2 {
+            color: #000;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #fff;
+        }
+
+        .content-section h3 {
+            color: #000;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .content-section p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .content-section ul, .content-section ol {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box {
+            background-color: #fff;
+            border-left: 4px solid #000;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .info-box h4 {
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box p {
+            margin-bottom: 0;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #fff;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-answer {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .cta-box {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .cta-box h3 {
+            color: #000;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #000;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #000;        }
+
+        .category-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+            border-left: 4px solid #000;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-card h3 {
+            color: #000;
+            margin-bottom: 0.5rem;
+            margin-top: 0;
+        }
+
+        .disclaimer {
+            background-color: #fff;
+            border-left: 4px solid #000;
+            padding: 1.5rem;
+            margin: 3rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .disclaimer h3 {
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .disclaimer p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+  .footer-links {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-section {
+    flex: 1;
+    margin: 0 15px;
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 14px;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+    color: #999;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    color: #fff;
+}
+
+/* Social Media Icons */
+.social-media {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.social-icon {
+    color: #fff;
+    font-size: 24px;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section {
+        margin-bottom: 30px;
+    }
+
+    .logo {
+        font-size: 28px;
+    }
+
+    .description {
+        font-size: 12px;
+    }
+
+    .footer-section h3 {
+        font-size: 16px;
+    }
+}
+
+        .copyright {
+            margin-top: 1rem;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            .content-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Legal<span>Assist</span> AI</div>
+        <nav>
+            <ul>
+                <li><a href="../chat.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../legal-topics.html" class="active">Legal Topics</a></li>
+                <li><a href="../resourses.html">Resources</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="breadcrumb">
+            <a href="../legal-topics.html">Legal Topics</a>
+            <span>></span>
+            <span>Criminal Law</span>
+        </div>
+
+        <section class="page-header">
+            <h1>Criminal Law</h1>
+            <p>Understanding your rights, procedures, and options within the criminal justice system. Learn about criminal charges, defenses, and the legal process.</p>
+        </section>
+
+        <div class="content-layout">
+            <aside class="sidebar">
+                <h3>In This Section</h3>
+                <ul class="sidebar-menu">
+                    <li><a href="#overview" class="active">Overview</a></li>
+                    <li><a href="#your-rights">Your Rights</a></li>
+                    <li><a href="#criminal-process">Criminal Process</a></li>
+                    <li><a href="#common-offenses">Common Offenses</a></li>
+                    <li><a href="#defenses">Legal Defenses</a></li>
+                    <li><a href="#expungement">Record Expungement</a></li>
+                    <li><a href="#juveniles">Juvenile Cases</a></li>
+                    <li><a href="#faq">FAQs</a></li>
+                </ul>
+                
+                <h3 style="margin-top: 2rem;">Related Topics</h3>
+                <ul class="sidebar-menu">
+                    <li><a href="personal-injury.html">Personal Injury</a></li>
+                    <li><a href="family-law.html">Family Law</a></li>
+                    <li><a href="consumer-law.html">Consumer Law</a></li>
+                </ul>
+            </aside>
+
+            <div class="main-content">
+                <section class="content-section" id="overview">
+                    <h2>Overview of Criminal Law</h2>
+                    <p>Criminal law refers to the body of laws that define conduct prohibited by the government because it threatens and harms public safety and welfare. It establishes punishment for criminal acts. The primary objective of criminal law is to maintain social order and protect the community from harm while ensuring fairness in the legal process.</p>
+                    
+                    <div class="category-cards">
+                        <div class="category-card">
+                            <h3>Misdemeanors</h3>
+                            <p>Less serious crimes typically punishable by less than one year in jail, fines, probation, or community service.</p>
+                        </div>
+                        <div class="category-card">
+                            <h3>Felonies</h3>
+                            <p>More serious crimes punishable by imprisonment for more than one year, substantial fines, or even death in some jurisdictions.</p>
+                        </div>
+                        <div class="category-card">
+                            <h3>Infractions</h3>
+                            <p>Minor violations such as traffic tickets that typically result in fines rather than jail time.</p>
+                        </div>
+                        <div class="category-card">
+                            <h3>Wobblers</h3>
+                            <p>Crimes that can be charged as either a misdemeanor or a felony, depending on circumstances and prosecutorial discretion.</p>
+                        </div>
+                    </div>
+
+                    <p>Criminal law is distinct from civil law, which concerns disputes between individuals. In criminal cases, the government prosecutes an individual for violating laws designed to protect public safety.</p>
+                </section>
+
+                <section class="content-section" id="your-rights">
+                    <h2>Your Rights During Criminal Proceedings</h2>
+                    <p>The U.S. Constitution and state constitutions provide several important rights to protect individuals accused of crimes. Understanding these rights is crucial for anyone involved in the criminal justice system.</p>
+                    
+                    <h3>Constitutional Protections</h3>
+                    <ul>
+                        <li><strong>Fourth Amendment:</strong> Protection against unreasonable searches and seizures</li>
+                        <li><strong>Fifth Amendment:</strong> Right against self-incrimination and double jeopardy</li>
+                        <li><strong>Sixth Amendment:</strong> Right to a speedy trial, impartial jury, confrontation of witnesses, and legal counsel</li>
+                        <li><strong>Eighth Amendment:</strong> Protection against excessive bail, excessive fines, and cruel and unusual punishment</li>
+                    </ul>
+
+                    <h3>Miranda Rights</h3>
+                    <p>When in police custody and under interrogation, you have the right to:</p>
+                    <ul>
+                        <li>Remain silent</li>
+                        <li>Be informed that anything you say can be used against you in court</li>
+                        <li>Have an attorney present during questioning</li>
+                        <li>Have an attorney appointed if you cannot afford one</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h4>Important Reminder</h4>
+                        <p>Always remember that you have the right to remain silent and to request an attorney when interacting with law enforcement. Never waive these rights without first speaking to an attorney.</p>
+                    </div>
+                </section>
+
+                <section class="content-section" id="criminal-process">
+                    <h2>The Criminal Process</h2>
+                    <p>Understanding the criminal process helps you navigate the justice system more effectively. Here's a general overview of the stages in a criminal case:</p>
+
+                    <h3>Investigation</h3>
+                    <p>Law enforcement investigates potential crimes by gathering evidence, interviewing witnesses, and potentially identifying suspects.</p>
+
+                    <h3>Arrest</h3>
+                    <p>When police have probable cause to believe a person committed a crime, they may make an arrest, taking the suspect into custody.</p>
+
+                    <h3>Booking</h3>
+                    <p>After arrest, suspects are "booked" - photographed, fingerprinted, and personal information is recorded.</p>
+
+                    <h3>Initial Appearance/Arraignment</h3>
+                    <p>The accused appears before a judge, is informed of charges, and may enter a plea. Bail may be set at this stage.</p>
+
+                    <h3>Pre-Trial Motions</h3>
+                    <p>Attorneys may file motions to dismiss charges, suppress evidence, or resolve other legal issues before trial.</p>
+
+                    <h3>Trial</h3>
+                    <p>If the case proceeds to trial, both prosecution and defense present evidence and arguments before a judge or jury, who then determines guilt.</p>
+
+                    <h3>Sentencing</h3>
+                    <p>If found guilty, the defendant receives punishment, which may include incarceration, probation, fines, or community service.</p>
+
+                    <h3>Appeals</h3>
+                    <p>Defendants may appeal convictions or sentences if there were legal errors in the process.</p>
+                </section>
+
+                <section class="content-section" id="common-offenses">
+                    <h2>Common Criminal Offenses</h2>
+                    <p>Criminal offenses vary widely in severity and consequences. Here are some common categories:</p>
+
+                    <h3>Property Crimes</h3>
+                    <ul>
+                        <li><strong>Theft/Larceny:</strong> Taking someone else's property without permission</li>
+                        <li><strong>Burglary:</strong> Unlawfully entering a structure with intent to commit a crime</li>
+                        <li><strong>Robbery:</strong> Taking property from a person using force or threat</li>
+                        <li><strong>Arson:</strong> Deliberately setting fire to property</li>
+                        <li><strong>Vandalism:</strong> Damaging or destroying someone else's property</li>
+                    </ul>
+
+                    <h3>Violent Crimes</h3>
+                    <ul>
+                        <li><strong>Assault:</strong> Threatening or attempting to inflict injury</li>
+                        <li><strong>Battery:</strong> Unlawful physical contact or harm to another person</li>
+                        <li><strong>Domestic Violence:</strong> Assault or battery involving household or family members</li>
+                        <li><strong>Homicide:</strong> The killing of one person by another</li>
+                    </ul>
+
+                    <h3>White Collar Crimes</h3>
+                    <ul>
+                        <li><strong>Fraud:</strong> Deception for financial or personal gain</li>
+                        <li><strong>Embezzlement:</strong> Theft of assets by someone in a position of trust</li>
+                        <li><strong>Money Laundering:</strong> Concealing the origins of illegally obtained money</li>
+                        <li><strong>Tax Evasion:</strong> Illegal avoidance of tax payment</li>
+                    </ul>
+
+                    <h3>Drug Offenses</h3>
+                    <ul>
+                        <li><strong>Possession:</strong> Having illegal substances for personal use</li>
+                        <li><strong>Distribution/Trafficking:</strong> Selling or transporting illegal substances</li>
+                        <li><strong>Manufacturing:</strong> Creating illegal substances</li>
+                    </ul>
+                </section>
+
+                <section class="content-section" id="defenses">
+                    <h2>Legal Defenses in Criminal Cases</h2>
+                    <p>Various legal defenses may be available depending on the nature of the charges and circumstances:</p>
+
+                    <h3>Common Defenses</h3>
+                    <ul>
+                        <li><strong>Alibi:</strong> Evidence that you were elsewhere when the crime occurred</li>
+                        <li><strong>Self-Defense:</strong> Justification for using force to protect yourself</li>
+                        <li><strong>Insanity:</strong> Lack of mental capacity to understand the wrongfulness of actions</li>
+                        <li><strong>Duress:</strong> Being forced to commit a crime under threat</li>
+                        <li><strong>Entrapment:</strong> Being induced by law enforcement to commit a crime</li>
+                        <li><strong>Statute of Limitations:</strong> Time limit for prosecuting has expired</li>
+                        <li><strong>Lack of Evidence:</strong> Insufficient proof to establish guilt beyond reasonable doubt</li>
+                        <li><strong>Constitutional Violations:</strong> Evidence obtained through illegal searches or interrogations</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h4>Working With Your Defense Attorney</h4>
+                        <p>Be completely honest with your attorney about all facts and circumstances. Attorney-client privilege protects your communications, and your lawyer needs all information to develop the best defense strategy.</p>
+                    </div>
+                </section>
+
+                <section class="content-section" id="expungement">
+                    <h2>Record Expungement and Sealing</h2>
+                    <p>Criminal records can impact employment, housing, and other opportunities. Expungement and record sealing may help mitigate these consequences.</p>
+
+                    <h3>Expungement</h3>
+                    <p>Expungement legally destroys or erases a criminal record, making it as if the offense never occurred. Eligibility varies by state and offense type.</p>
+
+                    <h3>Record Sealing</h3>
+                    <p>Record sealing limits public access to your criminal record but doesn't completely remove it. It may still be accessible to law enforcement and certain employers.</p>
+
+                    <h3>Eligibility Factors</h3>
+                    <ul>
+                        <li>Type and severity of offense</li>
+                        <li>Time elapsed since conviction or completion of sentence</li>
+                        <li>Subsequent criminal history</li>
+                        <li>Completion of probation or other requirements</li>
+                        <li>State-specific laws and procedures</li>
+                    </ul>
+                </section>
+
+                <section class="content-section" id="juveniles">
+                    <h2>Juvenile Criminal Cases</h2>
+                    <p>The juvenile justice system differs from the adult system in philosophy, procedure, and outcomes.</p>
+
+                    <h3>Key Differences</h3>
+                    <ul>
+                        <li>Focus on rehabilitation rather than punishment</li>
+                        <li>Different terminology (e.g., "delinquent acts" instead of "crimes")</li>
+                        <li>Greater confidentiality and protection of records</li>
+                        <li>Different sentencing options focused on education and treatment</li>
+                        <li>Parents or guardians are typically involved in proceedings</li>
+                    </ul>
+
+                    <h3>Juvenile Record Sealing</h3>
+                    <p>Many states provide processes for sealing or expunging juvenile records when the individual reaches adulthood, assuming certain criteria are met.</p>
+                </section>
+
+                <div class="cta-box">
+                    <h3>Need Legal Help With a Criminal Matter?</h3>
+                    <p>Criminal charges can have serious and long-lasting consequences. Don't face the justice system alone. Get professional legal advice tailored to your specific situation.</p>
+                    <a href="../contact.html" class="cta-button">Speak With an Attorney</a>
+                </div>
+
+                <section class="content-section" id="faq">
+                    <h2>Frequently Asked Questions</h2>
+                    
+                    <div class="faq-item">
+                        <p class="faq-question">Should I talk to the police if I'm accused of a crime?</p>
+                        <p class="faq-answer">Generally, it's advisable to politely decline to answer questions until you have an attorney present. Anything you say can be used against you, even seemingly innocent statements.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <p class="faq-question">What's the difference between a public defender and a private attorney?</p>
+                        <p class="faq-answer">Public defenders are appointed by the court for defendants who cannot afford an attorney. While they are licensed attorneys, they often have high caseloads. Private attorneys are hired directly by clients and may have more time to dedicate to each case.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <p class="faq-question">Can I be arrested without a warrant?</p>
+                        <p class="faq-answer">Yes, in certain circumstances. Police can arrest without a warrant if they have probable cause to believe you committed a crime, especially for felonies or crimes committed in their presence.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <p class="faq-question">What happens if I can't afford bail?</p>
+                        <p class="faq-answer">If you cannot afford bail, you may remain in custody until your trial. However, alternatives may be available, such as bail reduction, release on recognizance, or using a bail bondsman service.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <p class="faq-question">Can I represent myself in a criminal case?</p>
+                        <p class="faq-answer">While you have the right to represent yourself (known as "pro se" representation), it's generally not advisable for criminal cases due to their complexity and the serious consequences involved.</p>
+                    </div>
+                </section>
+
+                <div class="disclaimer">
+                    <h3>Legal Disclaimer</h3>
+                    <p>The information provided on this page is for general informational purposes only and does not constitute legal advice. Every case is unique, and laws vary by jurisdiction. Consult with a qualified attorney to understand how the law applies to your specific situation.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="logo">Legal<span>Assist</span> AI</div>
+            <div class="footer-links">
+                <a href="../chat.html">Home</a>
+                <a href="../legaltopics.html">Legal Topics</a>
+                <a href="../about.html">About Us</a>
+                <a href="../resourses.html">Resources</a>
+            </div>
+            <p class="copyright">© 2025 LegalAssist AI. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+                

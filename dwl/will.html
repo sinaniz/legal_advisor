@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable Will Template</title>
+    <!-- Include jsPDF and html2canvas libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #333;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .template-container {
+            border: 1px solid #ddd;
+            padding: 30px;
+            margin: 20px 0;
+            background-color: #f9f9f9;
+        }
+        .editable-field {
+            background-color: #fff;
+            border: 1px dashed #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            display: inline-block;
+            min-width: 200px;
+        }
+        .editable-field:focus {
+            outline: 2px solid #3498db;
+            border: 1px solid #3498db;
+        }
+        .download-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .download-btn, .print-btn {
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 0 10px;
+        }
+        .download-btn:hover, .print-btn:hover {
+            background-color: #3498db;
+        }
+        .download-progress {
+            display: none;
+            margin-top: 20px;
+        }
+        .countdown {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #333;
+        }
+        .instructions {
+            background-color: #e8f4fc;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            margin: 20px 0;
+        }
+        .signature-line {
+            border-top: 1px solid #000;
+            margin-top: 50px;
+            padding-top: 5px;
+        }
+        .resource-button {
+            display: inline-block;
+            background-color: #138ebf;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .resource-button:hover {
+            background-color: #3498db;
+        }
+        @media print {
+            .instructions, .download-section, .resource-button {
+                display: none;
+            }
+            .editable-field {
+                border: none;
+                background-color: transparent;
+            }
+            .template-container {
+                border: none;
+                background-color: white;
+            }
+        }
+        /* For PDF export */
+        #pdf-export-container {
+            position: absolute;
+            left: -9999px;
+            top: -9999px;
+            width: 800px;
+            padding: 40px;
+            background-color: white;
+        }
+        #pdf-export-container .editable-field {
+            border: none;
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+            display: inline;
+        }
+        #pdf-export-container .template-container {
+            border: none;
+            background-color: transparent;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Editable Will Template</h1>
+    
+    <div class="instructions">
+        <p>This is an editable will template. Click on the highlighted fields to enter your information. Once you've filled in all details, you can download the completed template as a PDF file or print it directly. Please note that this template is for reference only and should be reviewed by a legal professional before finalizing.</p>
+    </div>
+    
+    <div class="template-container" id="will-template">
+        <h2>LAST WILL AND TESTAMENT</h2>
+        
+        <p>I, <span class="editable-field" contenteditable="true" data-placeholder="Your Full Legal Name"></span>, a resident of <span class="editable-field" contenteditable="true" data-placeholder="City, State"></span>, being of sound mind and memory, do hereby make, publish, and declare this to be my Last Will and Testament, hereby revoking any and all wills and codicils heretofore made by me.</p>
+        
+        <h3>ARTICLE I: PERSONAL REPRESENTATIVE</h3>
+        <p>I hereby nominate, constitute and appoint <span class="editable-field" contenteditable="true" data-placeholder="Name of Personal Representative"></span>, of <span class="editable-field" contenteditable="true" data-placeholder="City, State"></span> as Personal Representative of this my Last Will and Testament.</p>
+        
+        <h3>ARTICLE II: PAYMENT OF DEBTS</h3>
+        <p>I direct my Personal Representative to pay all my just debts, funeral expenses, and the expenses of administering my estate as soon after my death as practicable.</p>
+        
+        <h3>ARTICLE III: DISPOSITION OF PROPERTY</h3>
+        <p>I give, devise and bequeath all of my property, real, personal, and mixed, of whatsoever kind and wheresoever situated, which I may own or have the right to dispose of at the time of my death as follows:</p>
+        
+        <p>To <span class="editable-field" contenteditable="true" data-placeholder="Beneficiary Name"></span>, my <span class="editable-field" contenteditable="true" data-placeholder="Relationship"></span>, I give <span class="editable-field" contenteditable="true" data-placeholder="Description of Asset/Percentage of Estate"></span>.</p>
+        
+        <p>To <span class="editable-field" contenteditable="true" data-placeholder="Beneficiary Name"></span>, my <span class="editable-field" contenteditable="true" data-placeholder="Relationship"></span>, I give <span class="editable-field" contenteditable="true" data-placeholder="Description of Asset/Percentage of Estate"></span>.</p>
+        
+        <p>To <span class="editable-field" contenteditable="true" data-placeholder="Beneficiary Name"></span>, my <span class="editable-field" contenteditable="true" data-placeholder="Relationship"></span>, I give <span class="editable-field" contenteditable="true" data-placeholder="Description of Asset/Percentage of Estate"></span>.</p>
+        
+        <h3>ARTICLE IV: GUARDIAN DESIGNATION</h3>
+        <p>In the event I am survived by minor children, I hereby nominate and appoint <span class="editable-field" contenteditable="true" data-placeholder="Guardian Name"></span> as guardian of the person and property of my minor children.</p>
+        
+        <h3>ARTICLE V: MISCELLANEOUS PROVISIONS</h3>
+        <p>If any provision of this Will is found to be invalid or unenforceable, the remaining provisions shall continue to be valid and enforceable.</p>
+        
+        <p>IN WITNESS WHEREOF, I have hereunto set my hand to this my Last Will and Testament on this <span class="editable-field" contenteditable="true" data-placeholder="Day"></span> day of <span class="editable-field" contenteditable="true" data-placeholder="Month"></span>, <span class="editable-field" contenteditable="true" data-placeholder="Year"></span>.</p>
+        
+        <div class="signature-line">
+            <p>____________________________<br>
+            <span class="editable-field" contenteditable="true" data-placeholder="Your Full Legal Name"></span>, Testator</p>
+        </div>
+        
+        <p>The foregoing instrument was signed, published, and declared by the above-named Testator as his/her Last Will, in our presence, and we, at his/her request and in his/her presence, and in the presence of each other, have subscribed our names as witnesses thereto, believing said Testator to be of sound mind and memory.</p>
+        
+        <div class="signature-line">
+            <p>____________________________<br>
+            Witness Signature<br>
+            <span class="editable-field" contenteditable="true" data-placeholder="Witness Name"></span><br>
+            <span class="editable-field" contenteditable="true" data-placeholder="Witness Address"></span></p>
+        </div>
+        
+        <div class="signature-line">
+            <p>____________________________<br>
+            Witness Signature<br>
+            <span class="editable-field" contenteditable="true" data-placeholder="Witness Name"></span><br>
+            <span class="editable-field" contenteditable="true" data-placeholder="Witness Address"></span></p>
+        </div>
+    </div>
+    
+    <!-- Hidden container for PDF export -->
+    <div id="pdf-export-container" style="display: none;"></div>
+    
+    <div class="download-section">
+        <button id="download-pdf-btn" class="download-btn">Download as PDF</button>
+        <button id="print-btn" class="print-btn">Print Will</button>
+        
+        <div id="download-progress" class="download-progress">
+            <p>Preparing your document, please wait...</p>
+            <div class="countdown" id="timer">3</div>
+            <p id="complete-message" style="display: none; color: green; font-weight: bold;">Download ready!</p>
+        </div>
+    </div>
+
+    <a href="../resourses.html" class="resource-button">Back to Resources</a>
+
+    <script>
+        // Add placeholder text to editable fields
+        document.addEventListener('DOMContentLoaded', function() {
+            const editableFields = document.querySelectorAll('.editable-field');
+            
+            editableFields.forEach(field => {
+                // Set placeholder text
+                const placeholder = field.getAttribute('data-placeholder');
+                field.textContent = placeholder;
+                
+                // Focus event - clear placeholder
+                field.addEventListener('focus', function() {
+                    if (this.textContent === this.getAttribute('data-placeholder')) {
+                        this.textContent = '';
+                    }
+                });
+                
+                // Blur event - restore placeholder if empty
+                field.addEventListener('blur', function() {
+                    if (this.textContent.trim() === '') {
+                        this.textContent = this.getAttribute('data-placeholder');
+                    }
+                });
+            });
+        });
+
+        // Download PDF functionality
+        document.getElementById('download-pdf-btn').addEventListener('click', function() {
+            // Show the download progress section
+            document.getElementById('download-progress').style.display = 'block';
+            
+            // Set the countdown time in seconds
+            let timeLeft = 3;
+            
+            // Update the countdown every second
+            const countdownTimer = setInterval(function() {
+                // Display the remaining time
+                document.getElementById('timer').textContent = timeLeft;
+                
+                // Decrease the time
+                timeLeft--;
+                
+                // Check if the countdown is complete
+                if (timeLeft < 0) {
+                    // Stop the countdown
+                    clearInterval(countdownTimer);
+                    
+                    // Hide the timer
+                    document.getElementById('timer').style.display = 'none';
+                    
+                    // Show completion message
+                    document.getElementById('complete-message').style.display = 'block';
+                    
+                    // Trigger the PDF generation and download
+                    generatePDF();
+                }
+            }, 1000);
+        });
+        
+        // Print functionality
+        document.getElementById('print-btn').addEventListener('click', function() {
+            window.print();
+        });
+        
+        function generatePDF() {
+            // Create a clean copy of the template for PDF export
+            const templateContent = document.getElementById('will-template');
+            const exportContainer = document.getElementById('pdf-export-container');
+            
+            // Clone the template content
+            exportContainer.innerHTML = templateContent.innerHTML;
+            
+            // Process all editable fields in the export container
+            const editableFields = exportContainer.querySelectorAll('.editable-field');
+            const originalFields = templateContent.querySelectorAll('.editable-field');
+            
+            // Update the fields in the export container with values from the original
+            for (let i = 0; i < editableFields.length; i++) {
+                const originalText = originalFields[i].textContent;
+                const placeholder = originalFields[i].getAttribute('data-placeholder');
+                
+                // If field still contains placeholder, replace with empty string
+                editableFields[i].textContent = (originalText === placeholder) ? '' : originalText;
+                editableFields[i].removeAttribute('contenteditable');
+                editableFields[i].removeAttribute('data-placeholder');
+            }
+            
+            // Make the export container visible for HTML2Canvas to capture
+            exportContainer.style.display = 'block';
+            
+            // Use html2canvas to capture the content
+            html2canvas(exportContainer, {
+                scale: 2, // Higher scale for better quality
+                useCORS: true,
+                logging: false
+            }).then(canvas => {
+                // Create PDF
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                
+                // Calculate the width and height to fit A4
+                const imgData = canvas.toDataURL('image/png');
+                const pageWidth = pdf.internal.pageSize.getWidth();
+                const pageHeight = pdf.internal.pageSize.getHeight();
+                const canvasWidth = canvas.width;
+                const canvasHeight = canvas.height;
+                
+                const ratio = canvasWidth / canvasHeight;
+                const pdfWidth = pageWidth;
+                const pdfHeight = pdfWidth / ratio;
+                
+                // Add image to PDF, using multiple pages if needed
+                let heightLeft = pdfHeight;
+                let position = 0;
+                let pageNumber = 1;
+                
+                pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, pdfHeight);
+                heightLeft -= pageHeight;
+                
+                // Add more pages if the content is longer than one page
+                while (heightLeft >= 0) {
+                    pdf.addPage();
+                    pageNumber++;
+                    position = -(pageNumber - 1) * pageHeight;
+                    pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, pdfHeight);
+                    heightLeft -= pageHeight;
+                }
+                
+                // Save the PDF
+                pdf.save('My_Last_Will_and_Testament.pdf');
+                
+                // Hide the export container again
+                exportContainer.style.display = 'none';
+                
+                // Hide the download progress after a short delay
+                setTimeout(() => {
+                    document.getElementById('download-progress').style.display = 'none';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

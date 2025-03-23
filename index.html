@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Advisor AI - Welcome</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .background-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #141414 0%, #000000 100%);
+            z-index: -1;
+        }
+        
+        .splash-container {
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards 0.2s;
+        }
+        
+        .logo svg {
+            width: 120px;
+            height: 120px;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards 0.5s;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards 0.7s;
+            color: #cccccc;
+        }
+        
+        .loader {
+            width: 100%;
+            height: 3px;
+            background-color: #333333;
+            margin-top: 40px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            border-radius: 3px;
+            animation: fadeIn 0.8s ease forwards 1s;
+        }
+        
+        .loader::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, #ffffff, #4d9fff);
+            animation: loading 4s linear forwards;
+            border-radius: 3px;
+            box-shadow: 0 0 10px rgba(77, 159, 255, 0.6);
+        }
+        
+        .loader-text {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #999999;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards 1s, pulse 1.5s infinite alternate;
+        }
+        
+        .scales-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .scale {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: floating 8s infinite ease-in-out;
+        }
+        
+        .glow {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(77, 159, 255, 0.1) 0%, rgba(77, 159, 255, 0) 70%);
+            animation: pulse 3s infinite alternate, moveAround 15s infinite linear;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes loading {
+            0% {
+                width: 0;
+                box-shadow: 0 0 5px rgba(77, 159, 255, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 15px rgba(77, 159, 255, 0.6);
+            }
+            100% {
+                width: 100%;
+                box-shadow: 0 0 10px rgba(77, 159, 255, 0.3);
+            }
+        }
+        
+        @keyframes floating {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+                opacity: 0.7;
+            }
+            25% {
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-20px) translateX(15px) rotate(180deg) scale(1.2);
+                opacity: 0.5;
+            }
+            75% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(0) translateX(0) rotate(360deg) scale(1);
+                opacity: 0.7;
+            }
+        }
+        
+        @keyframes pulse {
+            from {
+                opacity: 0.6;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes moveAround {
+            0% {
+                top: 20%;
+                left: 20%;
+            }
+            25% {
+                top: 20%;
+                left: 80%;
+            }
+            50% {
+                top: 80%;
+                left: 80%;
+            }
+            75% {
+                top: 80%;
+                left: 20%;
+            }
+            100% {
+                top: 20%;
+                left: 20%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-gradient"></div>
+    
+    <div class="scales-container" id="scales-container"></div>
+    
+    <div class="splash-container">
+        <div class="logo">
+            <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M60 10C32.4 10 10 32.4 10 60C10 87.6 32.4 110 60 110C87.6 110 110 87.6 110 60C110 32.4 87.6 10 60 10ZM60 100C37.9 100 20 82.1 20 60C20 37.9 37.9 20 60 20C82.1 20 100 37.9 100 60C100 82.1 82.1 100 60 100Z" fill="white"/>
+                <path d="M45 45H35V75H45V45Z" fill="white"/>
+                <path d="M85 45H75V75H85V45Z" fill="white"/>
+                <path d="M60 35L30 55H90L60 35Z" fill="white"/>
+                <path d="M60 85L30 65H90L60 85Z" fill="white"/>
+            </svg>
+        </div>
+        
+        <h1>LEGAL ADVISOR AI</h1>
+        <p class="tagline">Providing intelligent legal guidance at your fingertips</p>
+        
+        <div class="loader"></div>
+        <p class="loader-text">Initializing secure connection...</p>
+    </div>
+    
+    <script>
+        // Create floating elements
+        const scalesContainer = document.getElementById('scales-container');
+        const numberOfScales = 20;
+        const numberOfGlows = 3;
+        
+        // Create scales
+        for (let i = 0; i < numberOfScales; i++) {
+            const scale = document.createElement('div');
+            scale.className = 'scale';
+            
+            // Random position
+            scale.style.left = `${Math.random() * 100}%`;
+            scale.style.top = `${Math.random() * 100}%`;
+            
+            // Random size
+            const size = 10 + Math.random() * 40;
+            scale.style.width = `${size}px`;
+            scale.style.height = `${size}px`;
+            
+            // Random animation delay and duration
+            scale.style.animationDelay = `${Math.random() * 5}s`;
+            scale.style.animationDuration = `${8 + Math.random() * 7}s`;
+            
+            // Random opacity and border color
+            const opacity = 0.1 + Math.random() * 0.2;
+            const blueAmount = Math.floor(Math.random() * 100);
+            scale.style.border = `1px solid rgba(${255 - blueAmount}, ${255 - blueAmount}, 255, ${opacity})`;
+            
+            scalesContainer.appendChild(scale);
+        }
+        
+        // Create glow effects
+        for (let i = 0; i < numberOfGlows; i++) {
+            const glow = document.createElement('div');
+            glow.className = 'glow';
+            
+            // Random position
+            glow.style.left = `${Math.random() * 80}%`;
+            glow.style.top = `${Math.random() * 80}%`;
+            
+            // Random size
+            const size = 150 + Math.random() * 250;
+            glow.style.width = `${size}px`;
+            glow.style.height = `${size}px`;
+            
+            // Random animation delay
+            glow.style.animationDelay = `${Math.random() * 5}s, ${Math.random() * 5}s`;
+            
+            scalesContainer.appendChild(glow);
+        }
+        
+        // Redirect after 4 seconds
+        setTimeout(() => {
+            window.location.href = 'chat.html';
+        }, 4000);
+    </script>
+</body>
+</html>

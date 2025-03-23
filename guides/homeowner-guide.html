@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalAssist AI - Homeowner's Legal Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #fff9f5;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        header {
+            background-color: #000;            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: #fff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        nav a.active {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .guide-header {
+            text-align: center;
+            margin: 2rem 0 3rem;
+            background-color: #fff;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid #000;
+        }
+
+        .guide-header h1 {
+            font-size: 2.5rem;
+            color: #000;
+            margin-bottom: 1rem;
+        }
+
+        .guide-header p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .guide-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 3rem;
+        }
+
+        .guide-section {
+            margin-bottom: 3rem;
+        }
+
+        .guide-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .guide-section h2 {
+            color: #000;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #fff;
+        }
+
+        .guide-section h3 {
+            color: #000;
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .guide-section p {
+            color: #555;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .guide-section ul, .guide-section ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .guide-section li {
+            margin-bottom: 0.7rem;
+        }
+
+        .info-box {
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #000;
+        }
+
+        .info-box h4 {
+            color: #000;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .info-box p {
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .topic-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .topic-title {
+            color: #000;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+        }
+
+        .topic-card p {
+            margin-bottom: 0;
+            font-size: 1rem;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .resource-button {
+            display: inline-block;
+            background-color: #000;
+            color: white;
+            padding: 0.8rem 2.5rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .resource-button:hover {
+            background-color: #000;        }
+
+  .footer-links {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-section {
+    flex: 1;
+    margin: 0 15px;
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 14px;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+    color: #999;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    color: #fff;
+}
+
+/* Social Media Icons */
+.social-media {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.social-icon {
+    color: #fff;
+    font-size: 24px;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section {
+        margin-bottom: 30px;
+    }
+
+    .logo {
+        font-size: 28px;
+    }
+
+    .description {
+        font-size: 12px;
+    }
+
+    .footer-section h3 {
+        font-size: 16px;
+    }
+}
+
+        .copyright {
+            margin-top: 1rem;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .guide-header h1 {
+                font-size: 2rem;
+            }
+            
+            .topic-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Legal<span>Assist</span> AI</div>
+        <nav>
+            <ul>
+                <li><a href="../chat.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../legaltopics.html">Legal Topics</a></li>
+                <li><a href="../resourses.html">Resources</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="guide-header">
+            <h1>Homeowner's Legal Guide</h1>
+            <p>Navigate the legal aspects of homeownership with confidence. From property rights and boundary disputes to HOA conflicts and foreclosure protection, understand your rights and responsibilities.</p>
+        </section>
+
+        <div class="guide-content">
+            <section class="guide-section">
+                <h2>Property Rights and Ownership</h2>
+                <p>As a homeowner, you possess a bundle of legal rights that protect your interests in your property. Understanding these rights can help you avoid disputes and protect your investment.</p>
+                
+                <h3>Types of Ownership</h3>
+                <ul>
+                    <li><strong>Fee Simple:</strong> The most complete form of ownership, giving you full rights to the land and any structures on it</li>
+                    <li><strong>Joint Tenancy:</strong> Equal ownership between two or more people with right of survivorship</li>
+                    <li><strong>Tenancy in Common:</strong> Ownership divided into shares that can be unequal and sold or transferred without other owners' consent</li>
+                    <li><strong>Community Property:</strong> In certain states, property acquired during marriage is owned equally by both spouses</li>
+                </ul>
+                
+                <h3>Deed Types and Their Significance</h3>
+                <p>The type of deed you receive when purchasing property determines the guarantees and protections you have:</p>
+                
+                <div class="topic-grid">
+                    <div class="topic-card">
+                        <div class="topic-title">Warranty Deed</div>
+                        <p>Provides the strongest protection, guaranteeing that the seller has clear title to the property and that there are no undisclosed liens, encumbrances, or title defects.</p>
+                    </div>
+                    <div class="topic-card">
+                        <div class="topic-title">Special Warranty Deed</div>
+                        <p>Guarantees only against issues that arose during the seller's ownership period, but not against problems that existed before they owned it.</p>
+                    </div>
+                    <div class="topic-card">
+                        <div class="topic-title">Quitclaim Deed</div>
+                        <p>Offers the least protection, simply transferring whatever interest the grantor might have in the property without any warranties or guarantees.</p>
+                    </div>
+                    <div class="topic-card">
+                        <div class="topic-title">Special Purpose Deeds</div>
+                        <p>Include executor's deeds, trustee's deeds, and tax deeds, which transfer property in specific legal situations like probate or foreclosure.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="guide-section">
+                <h2>Boundary Disputes and Easements</h2>
+                <p>Boundary disputes and easement issues are common sources of conflict between neighbors. Understanding how to handle these issues can help prevent costly legal battles.</p>
+                
+                <h3>Common Boundary Disputes</h3>
+                <ul>
+                    <li><strong>Fence Location:</strong> Disagreements about the correct placement of fences relative to property lines</li>
+                    <li><strong>Encroachments:</strong> Structures, driveways, or landscaping that extends onto neighboring property</li>
+                    <li><strong>Tree and Vegetation Issues:</strong> Disputes over trees that straddle property lines or block views</li>
+                    <li><strong>Adverse Possession:</strong> Claims of ownership based on open, notorious, and continuous use of land</li>
+                </ul>
+                
+                <div class="info-box">
+                    <h4>Steps to Resolve Boundary Disputes:</h4>
+                    <p>1. Review your property deed and survey</p>
+                    <p>2. Commission a new survey if necessary</p>
+                    <p>3. Communicate with your neighbor about the issue</p>
+                    <p>4. Consider mediation if direct communication fails</p>
+                    <p>5. Consult with a real estate attorney before taking legal action</p>
+                </div>
+                
+                <h3>Understanding Easements</h3>
+                <p>Easements are legal rights to use another's property for a specific purpose. Common types include:</p>
+                
+                <ul>
+                    <li><strong>Utility Easements:</strong> Allow utility companies access to install and maintain services</li>
+                    <li><strong>Right-of-Way Easements:</strong> Permit access across property, often for landlocked parcels</li>
+                    <li><strong>Prescriptive Easements:</strong> Created through long-term use without permission</li>
+                    <li><strong>Conservation Easements:</strong> Restrict development to preserve natural resources</li>
+                </ul>
+                
+                <p>Always check for easements before making property improvements or purchases, as they can significantly affect your property rights and value.</p>
+            </section>
+
+            <section class="guide-section">
+                <h2>HOA and Covenant Disputes</h2>
+                <p>Homeowners Associations (HOAs) govern many residential communities through Covenants, Conditions, and Restrictions (CC&Rs). Understanding your rights and obligations can help you navigate potential conflicts.</p>
+                
+                <h3>Your Rights as an HOA Member</h3>
+                <ul>
+                    <li>Access to association records and financial statements</li>
+                    <li>Participation in association meetings and elections</li>
+                    <li>Fair application of rules and regulations</li>
+                    <li>Due process for alleged violations</li>
+                    <li>Reasonable accommodation for disabilities</li>
+                </ul>
+           
+                <h3>Common HOA Disputes</h3>
+                <div class="topic-grid">
+                    <div class="topic-card">
+                        <div class="topic-title">Architectural Controls</div>
+                        <p>Conflicts over home modifications, paint colors, landscaping, or structural changes that require HOA approval.</p>
+                    </div>
+                    <div class="topic-card">
+                        <div class="topic-title">Assessment and Fee Disputes</div>
+                        <p>Disagreements about regular dues, special assessments, or late fees imposed by the association.</p>
+                    </div>
+                    <div class="topic-card">
+                        <div class="topic-title">Rule Enforcement</div>
+                        <p>Conflicts over parking restrictions, noise regulations, pet policies, or home-based business operations.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="button-container">
+                <a href="../resourses.html" class="resource-button">Back to Resources</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+        
+            <div class="copyright">
+                © 2025 LegalAssist AI. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

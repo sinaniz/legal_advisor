@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalAssist AI - Business Law</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #fff9f5;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        header {
+            background-color: #000;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: #fff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        nav a.active {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin: 2rem 0 4rem;
+            background-color: #fff;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid #000;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #000;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .breadcrumbs {
+            margin-bottom: 2rem;
+            color: #888;
+        }
+
+        .breadcrumbs a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+
+        .topic-overview {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .topic-overview h2 {
+            color: #000;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #fff;
+        }
+
+        .topic-overview p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .subtopics-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .subtopic-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid #666;
+        }
+
+        .subtopic-content {
+            padding: 1.5rem;
+        }
+
+        .subtopic-title {
+            font-size: 1.3rem;
+            color: #000;
+            margin-bottom: 1rem;
+        }
+
+        .subtopic-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .subtopic-list {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .subtopic-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-section h2 {
+            color: #000;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #fff;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-question {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .resources-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .resources-section h2 {
+            color: #000;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #fff;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .resource-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .resource-title {
+            color: #000;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .resource-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .resource-link {
+            color: #000;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .resource-link:hover {
+            text-decoration: underline;
+        }
+
+        .disclaimer {
+            background-color: #fff;
+            border-left: 4px solid #000;
+            padding: 1.5rem;
+            margin: 3rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .disclaimer h3 {
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .disclaimer p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .cta-contact {
+            text-align: center;
+            background-color: #fff;
+            padding: 3rem;
+            border-radius: 10px;
+            margin: 3rem 0;
+        }
+
+        .cta-contact h2 {
+            color: #000;
+            margin-bottom: 1rem;
+        }
+
+        .cta-contact p {
+            color: #555;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #000;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #000;
+        }
+
+        footer {
+            background-color: #000;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .footer-links a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            margin-top: 1rem;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            .subtopics-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .resources-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Legal<span>Assist</span> AI</div>
+        <nav>
+            <ul>
+                <li><a href="../chat.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../legaltopics.html" class="active">Legal Topics</a></li>
+                <li><a href="../resourses.html">Resources</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="breadcrumbs">
+            <a href="../legaltopics.html">Legal Topics</a> > Business Law
+        </div>
+
+        <section class="page-header">
+            <h1>Business Law</h1>
+            <p>Understanding the legal framework for starting, operating, and growing your business while minimizing risks and ensuring compliance.</p>
+        </section>
+
+        <section class="topic-overview">
+            <h2>What is Business Law?</h2>
+            <p>Business law encompasses the rules, regulations, and legal principles that govern the formation, operation, and dissolution of business entities. It includes a variety of legal areas that affect businesses, such as contracts, employment, intellectual property, taxation, corporate governance, and regulatory compliance.</p>
+            <p>Whether you're a small business owner, entrepreneur, or part of a large corporation, understanding the basics of business law is essential for making informed decisions, protecting your interests, and ensuring your business operates within legal boundaries.</p>
+        </section>
+
+        <section class="subtopics-container">
+            <div class="subtopic-card">
+                <div class="subtopic-content">
+                    <h3 class="subtopic-title">Business Formation</h3>
+                    <p class="subtopic-description">The process of legally establishing your business entity and understanding the various business structures available.</p>
+                    <ul class="subtopic-list">
+                        <li>Sole Proprietorships</li>
+                        <li>Partnerships (General, Limited, LLP)</li>
+                        <li>Limited Liability Companies (LLC)</li>
+                        <li>Corporations (C-Corp, S-Corp, B-Corp)</li>
+                        <li>Nonprofit Organizations</li>
+                        <li>Registration Requirements</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="subtopic-card">
+                <div class="subtopic-content">
+                    <h3 class="subtopic-title">Business Contracts</h3>
+                    <p class="subtopic-description">Legal agreements that define relationships between businesses, customers, suppliers, and employees.</p>
+                    <ul class="subtopic-list">
+                        <li>Contract Formation Requirements</li>
+                        <li>Common Business Agreements</li>
+                        <li>Breach of Contract Issues</li>
+                        <li>Contract Negotiation Strategies</li>
+                        <li>Service Level Agreements</li>
+                        <li>Non-Disclosure Agreements</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="subtopic-card">
+                <div class="subtopic-content">
+                    <h3 class="subtopic-title">Intellectual Property</h3>
+                    <p class="subtopic-description">Protection for creative works, inventions, and brand elements that give your business a competitive advantage.</p>
+                    <ul class="subtopic-list">
+                        <li>Trademarks and Service Marks</li>
+                        <li>Patents and Inventions</li>
+                        <li>Copyrights for Creative Works</li>
+                        <li>Trade Secrets Protection</li>
+                        <li>IP Licensing Agreements</li>
+                        <li>IP Infringement Issues</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="subtopic-card">
+                <div class="subtopic-content">
+                    <h3 class="subtopic-title">Employment Law</h3>
+                    <p class="subtopic-description">Legal regulations governing the employer-employee relationship and workplace policies.</p>
+                    <ul class="subtopic-list">
+                        <li>Hiring Practices and Documentation</li>
+                        <li>Employee Classification</li>
+                        <li>Wage and Hour Laws</li>
+                        <li>Workplace Safety Requirements</li>
+                        <li>Employee Benefits and Leave</li>
+                        <li>Termination Procedures</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="subtopic-card">
+                <div class="subtopic-content">
+                    <h3 class="subtopic-title">Business Taxes</h3>
+                    <p class="subtopic-description">Understanding tax obligations, compliance requirements, and planning strategies for businesses.</p>
+                    <ul class="subtopic-list">
+                        <li>Federal Income Tax Requirements</li>
+                        <li>State and Local Tax Obligations</li>
+                        <li>Sales and Use Taxes</li>
+                        <li>Payroll Tax Requirements</li>
+                        <li>Tax Deductions for Businesses</li>
+                        <li>Tax Filing Deadlines</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="subtopic-card">
+                <div class="subtopic-content">
+                    <h3 class="subtopic-title">Regulatory Compliance</h3>
+                    <p class="subtopic-description">Adherence to laws, regulations, and industry standards that apply to your specific business operations.</p>
+                    <ul class="subtopic-list">
+                        <li>Industry-Specific Regulations</li>
+                        <li>Data Privacy Requirements</li>
+                        <li>Consumer Protection Laws</li>
+                        <li>Environmental Regulations</li>
+                        <li>Licensing Requirements</li>
+                        <li>Reporting Obligations</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <h3 class="faq-question">What business structure offers the best liability protection?</h3>
+                <p class="faq-answer">Limited Liability Companies (LLCs) and Corporations generally offer the strongest liability protection by creating a legal separation between business and personal assets. This means your personal assets are typically protected from business debts and liabilities. However, each structure has different tax implications and administrative requirements, so it's advisable to consult with a business attorney to determine the best option for your specific situation.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3 class="faq-question">Do I need written contracts for all business agreements?</h3>
+                <p class="faq-answer">While not all agreements legally require a written contract, having written documentation for business relationships is strongly recommended. Written contracts provide clarity on each party's obligations, establish procedures for handling disputes, and serve as valuable evidence if legal issues arise. Verbal agreements can be enforceable in many situations, but they're much harder to prove and may have limited enforceability depending on the specific circumstances and state laws.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3 class="faq-question">How do I protect my business name and logo?</h3>
+                <p class="faq-answer">To protect your business name and logo, you should consider trademark registration. Start by conducting a trademark search to ensure your desired name and logo aren't already in use. Then file an application with the U.S. Patent and Trademark Office (USPTO). While registration isn't mandatory, it provides significant legal advantages including nationwide protection, legal presumption of ownership, and the ability to bring infringement actions in federal court. For international protection, you may need to file in other countries where you conduct business.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3 class="faq-question">What are the key employment laws small businesses need to follow?</h3>
+                <p class="faq-answer">Small businesses need to comply with several employment laws, including the Fair Labor Standards Act (FLSA) governing minimum wage and overtime; anti-discrimination laws like Title VII, ADA, and ADEA; the Family and Medical Leave Act (FMLA) if you have 50+ employees; worker's compensation requirements; workplace safety regulations (OSHA); and proper employee classification rules. Additionally, businesses must verify employment eligibility, withhold appropriate taxes, and follow state-specific requirements which may be more stringent than federal laws.</p>
+            </div>
+        </section>
+
+        <section class="resources-section">
+            <h2>Business Law Resources</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3 class="resource-title">SBA Business Guide</h3>
+                    <p class="resource-description">The Small Business Administration offers comprehensive guidance on business formation, licensing, and regulatory requirements.</p>
+                    <a href="#" class="resource-link">Learn More &rarr;</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3 class="resource-title">Contract Templates</h3>
+                    <p class="resource-description">Access customizable contract templates for common business agreements and transactions.</p>
+                    <a href="#" class="resource-link">View Templates &rarr;</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3 class="resource-title">IP Registration Guide</h3>
+                    <p class="resource-description">Step-by-step instructions for protecting your intellectual property through proper registration procedures.</p>
+                    <a href="#" class="resource-link">Access Guide &rarr;</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3 class="resource-title">Employment Law Checklist</h3>
+                    <p class="resource-description">Ensure compliance with key employment laws with our comprehensive business owner's checklist.</p>
+                    <a href="#" class="resource-link">Download Checklist &rarr;</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3 class="resource-title">Tax Calendar for Businesses</h3>
+                    <p class="resource-description">Keep track of important business tax deadlines and filing requirements throughout the year.</p>
+                    <a href="#" class="resource-link">View Calendar &rarr;</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3 class="resource-title">Regulatory Updates</h3>
+                    <p class="resource-description">Stay informed about the latest changes to business regulations and compliance requirements.</p>
+                    <a href="#" class="resource-link">Subscribe &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="disclaimer">
+            <h3>Legal Disclaimer</h3>
+            <p>The information provided on this page is for general informational purposes only and does not constitute legal advice. While we strive to provide accurate and up-to-date information, laws frequently change and vary by jurisdiction. Consult with a qualified attorney for advice specific to your business and situation.</p>
+        </div>
+
+        <section class="cta-contact">
+            <h2>Need Specific Business Law Guidance?</h2>
+            <p>Our team of legal experts can provide personalized advice tailored to your business needs. Schedule a consultation to discuss your specific legal questions and concerns.</p>
+            <a href="../contact.html" class="cta-button">Schedule a Consultation</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="logo">Legal<span>Assist</span> AI</div>
+            <div class="footer-links">
+                <li><a href="../chat.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../legaltopics.html" class="active">Legal Topics</a></li>
+                <li><a href="../resourses.html">Resources</a></li>
+            </div>
+            <p class="copyright">&copy; 2025 LegalAssist AI. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

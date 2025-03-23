@@ -1,0 +1,480 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenant Rights Guide - LegalAssist AI</title>
+    <style>
+        /* Common CSS for all resource content pages */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    
+        body {
+            background: #fff9f5;
+            min-height: 100vh;
+            position: relative;
+        }
+    
+        header {
+            background-color: #000;            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+    
+        .logo span {
+            color: #fff;
+        }
+    
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+    
+        nav li {
+            margin-left: 30px;
+        }
+    
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+    
+        nav a:hover {
+            color: #fff;
+        }
+    
+        nav a.active {
+            color: #fff;
+            font-weight: bold;
+        }
+    
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+    
+        .resource-header {
+            text-align: center;
+            margin: 2rem 0 3rem;
+            background-color: #fff;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid #000;
+        }
+    
+        .resource-header h1 {
+            font-size: 2.5rem;
+            color: #000;
+            margin-bottom: 1rem;
+        }
+    
+        .resource-header p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+    
+        .resource-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 3rem;
+        }
+    
+        .resource-section {
+            margin-bottom: 2.5rem;
+        }
+    
+        .resource-section:last-child {
+            margin-bottom: 0;
+        }
+    
+        .resource-section h2 {
+            color: #000;
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #fff;
+        }
+    
+        .resource-section h3 {
+            color: #000;
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem;
+        }
+    
+        .resource-section p {
+            color: #555;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+    
+        .resource-section ul, .resource-section ol {
+            margin: 1rem 0 1.5rem 1.5rem;
+            color: #555;
+            line-height: 1.7;
+        }
+    
+        .resource-section li {
+            margin-bottom: 0.5rem;
+        }
+    
+        .back-button {
+            display: inline-block;
+            background-color: #000;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            margin-top: 2rem;
+        }
+    
+        .back-button:hover {
+            background-color: #000;        }
+    
+        .disclaimer {
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 4px solid #000;
+        }
+    
+        .disclaimer h4 {
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+    
+        .disclaimer p {
+            color: #666;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+    
+        footer {
+            background-color: #000;            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+    
+        .footer-content {
+            position: relative;
+            z-index: 1;
+        }
+    
+        .copyright {
+            margin-top: 1rem;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+    
+        .info-box {
+            background-color: #f0f8ff;
+            border-left: 4px solid #4682b4;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+    
+        .info-box h4 {
+            color: #4682b4;
+            margin-bottom: 0.8rem;
+        }
+    
+        .info-box p {
+            color: #555;
+            margin: 0;
+        }
+    
+        .warning-box {
+            background-color: #fff5f5;
+            border-left: 4px solid #e53e3e;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+    
+        .warning-box h4 {
+            color: #e53e3e;
+            margin-bottom: 0.8rem;
+        }
+    
+        .warning-box p {
+            color: #555;
+            margin: 0;
+        }
+        
+        .resource-button {
+            display: inline-block;
+            background-color: #000;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .resource-button:hover {
+            background-color: #000;        }
+    
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+    
+            .resource-header h1 {
+                font-size: 2rem;
+            }
+    
+            .resource-section h2 {
+                font-size: 1.6rem;
+            }
+    
+            .resource-section h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+    
+</head>
+<body>
+    <header>
+        <div class="logo">Legal<span>Assist</span> AI</div>
+        <nav>
+            <ul>
+                <li><a href="../chat.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../legaltopics.html">Legal Topics</a></li>
+                <li><a href="../resourses.html">Resources</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="resource-header">
+            <h1>Tenant Rights Guide</h1>
+            <p>Understand your legal rights and responsibilities as a tenant to protect yourself in rental situations.</p>
+        </section>
+
+        <div class="resource-content">
+            <div class="resource-section">
+                <h2>Understanding Your Lease Agreement</h2>
+                <p>Your lease agreement is a legally binding contract between you and your landlord that outlines the terms and conditions of your tenancy. It's important to read and understand your lease before signing it.</p>
+                
+                <h3>Key Elements of a Lease Agreement</h3>
+                <ul>
+                    <li><strong>Duration:</strong> How long the lease lasts (typically 6 months or 1 year)</li>
+                    <li><strong>Rent amount:</strong> How much you'll pay and when it's due</li>
+                    <li><strong>Security deposit:</strong> Amount required and conditions for return</li>
+                    <li><strong>Maintenance responsibilities:</strong> What repairs the landlord handles versus tenant obligations</li>
+                    <li><strong>Pet policies:</strong> Whether pets are allowed and any associated fees</li>
+                    <li><strong>Subletting rules:</strong> Whether you can sublet the property to someone else</li>
+                    <li><strong>Early termination:</strong> Procedures and penalties for breaking the lease early</li>
+                </ul>
+
+                <p>Always get a copy of your signed lease and keep it in a safe place for the duration of your tenancy.</p>
+            </div>
+
+            <div class="resource-section">
+                <h2>Maintenance and Repairs</h2>
+                <p>Landlords are legally required to maintain rental properties in a habitable condition. This includes ensuring that essential services and systems are functioning properly.</p>
+
+                <h3>Landlord's Maintenance Responsibilities</h3>
+                <ul>
+                    <li>Providing and maintaining heating, plumbing, electricity, and hot water</li>
+                    <li>Ensuring the property is structurally sound and weather-tight</li>
+                    <li>Managing pest control for infestations not caused by tenant behavior</li>
+                    <li>Maintaining common areas in multi-unit buildings</li>
+                    <li>Complying with local building and health codes</li>
+                </ul>
+
+                <h3>Requesting Repairs</h3>
+                <p>When something needs repair:</p>
+                <ol>
+                    <li>Notify your landlord in writing as soon as possible, keeping a copy for your records</li>
+                    <li>Be specific about the problem and include photos if possible</li>
+                    <li>Allow reasonable time for response (typically 24-48 hours for emergencies, longer for non-urgent matters)</li>
+                    <li>Follow up if repairs aren't made within a reasonable timeframe</li>
+                </ol>
+
+                <div class="info-box">
+                    <h4>Important Note</h4>
+                    <p>In most jurisdictions, it's illegal for landlords to retaliate against tenants who request legitimate repairs. This includes raising rent, evicting, or reducing services in response to maintenance requests.</p>
+                </div>
+            </div>
+
+            <div class="resource-section">
+                <h3>Security Deposit Laws</h3>
+                <ul>
+                    <li><strong>Deposit limits:</strong> Many states have limits on how much landlords can charge for security deposits (commonly 1-2 months' rent)</li>
+                    <li><strong>Interest:</strong> Some jurisdictions require landlords to pay interest on deposits held</li>
+                    <li><strong>Return timeline:</strong> Most states require landlords to return deposits within 14-30 days after move-out</li>
+                    <li><strong>Deductions:</strong> Landlords can only deduct for damages beyond normal wear and tear, unpaid rent, or other lease violations</li>
+                </ul>
+
+                <h3>Getting Your Deposit Back</h3>
+                <ol>
+                    <li>Review your lease for specific move-out procedures</li>
+                    <li>Document the condition of the rental with photos or video before moving out</li>
+                    <li>Clean thoroughly and repair any minor damages</li>
+                    <li>Request a walk-through inspection with your landlord</li>
+                    <li>Provide a forwarding address for your deposit return</li>
+                </ol>
+
+                <div class="warning-box">
+                    <h4>Warning</h4>
+                    <p>If your landlord withholds your deposit unfairly, you may have legal recourse. Many states allow tenants to sue for 2-3 times the deposit amount if the landlord wrongfully withholds it.</p>
+                </div>
+            </div>
+
+            <div class="resource-section">
+                <h2>Privacy and Landlord Entry</h2>
+                <p>As a tenant, you have the right to quiet enjoyment of your rental property. This includes reasonable privacy from landlord entry.</p>
+
+                <h3>Landlord Entry Rules</h3>
+                <ul>
+                    <li><strong>Notice requirement:</strong> In most states, landlords must provide 24-48 hours notice before entering</li>
+                    <li><strong>Valid reasons for entry:</strong> Repairs, inspections, showing the unit to prospective tenants, or emergencies</li>
+                    <li><strong>Reasonable times:</strong> Entry should be during normal business hours unless otherwise agreed</li>
+                </ul>
+
+                <p>If your landlord repeatedly enters without proper notice, document each instance and remind them in writing of your right to privacy.</p>
+            </div>
+
+            <div class="resource-section">
+                <h2>Eviction Protection</h2>
+                <p>Landlords must follow specific legal procedures to evict tenants. Self-help evictions (changing locks, removing belongings, shutting off utilities) are illegal in all states.</p>
+
+                <h3>Valid Reasons for Eviction</h3>
+                <ul>
+                    <li>Failure to pay rent</li>
+                    <li>Significant lease violations</li>
+                    <li>Illegal activities on the premises</li>
+                    <li>Property damage beyond normal wear and tear</li>
+                    <li>Expiration of lease term (in some jurisdictions)</li>
+                </ul>
+
+                <h3>Eviction Process</h3>
+                <ol>
+                    <li>Written notice from landlord (time period varies by state and reason)</li>
+                    <li>Court filing if tenant doesn't comply with notice</li>
+                    <li>Court hearing where tenant can present defenses</li>
+                    <li>Court judgment</li>
+                    <li>If judgment favors landlord, enforcement by sheriff/constable</li>
+                </ol>
+
+                <div class="info-box">
+                    <h4>Know Your Rights</h4>
+                    <p>Some jurisdictions have "just cause" eviction laws that prevent landlords from evicting tenants without a legally valid reason, even after a lease expires.</p>
+                </div>
+            </div>
+
+            <div class="resource-section">
+                <h2>Discrimination Protection</h2>
+                <p>The Fair Housing Act prohibits discrimination in housing based on race, color, national origin, religion, sex, familial status, or disability.</p>
+
+                <h3>Protected Activities</h3>
+                <p>Landlords cannot discriminate when:</p>
+                <ul>
+                    <li>Advertising rental properties</li>
+                    <li>Showing units to prospective tenants</li>
+                    <li>Setting rental terms and conditions</li>
+                    <li>Providing services and facilities</li>
+                    <li>Making repairs</li>
+                    <li>Evicting tenants</li>
+                </ul>
+
+                <h3>Filing a Discrimination Complaint</h3>
+                <p>If you believe you've experienced housing discrimination, you can:</p>
+                <ol>
+                    <li>File a complaint with the Department of Housing and Urban Development (HUD)</li>
+                    <li>Contact your state's fair housing agency</li>
+                    <li>Consult with a civil rights attorney</li>
+                </ol>
+            </div>
+
+            <div class="resource-section">
+                <h2>Rent Control and Increases</h2>
+                <p>Some cities and states have rent control or rent stabilization laws that limit how much and how often landlords can increase rent.</p>
+
+                <h3>Rent Increase Rules</h3>
+                <ul>
+                    <li><strong>Notice period:</strong> Most jurisdictions require 30-60 days written notice before increasing rent</li>
+                    <li><strong>Frequency:</strong> Usually limited to once per lease term</li>
+                    <li><strong>Timing:</strong> Cannot be retaliatory or discriminatory</li>
+                </ul>
+
+                <p>Check your local laws to see if your area has rent control protections.</p>
+            </div>
+
+            <div class="resource-section">
+                <h2>Resources for Tenant Assistance</h2>
+                <h3>Government Resources</h3>
+                <ul>
+                    <li>HUD Tenant Rights: <a href="https://www.hud.gov/topics/rental_assistance/tenantrights">www.hud.gov/topics/rental_assistance/tenantrights</a></li>
+                    <li>State Consumer Protection Offices</li>
+                    <li>Local Housing Authorities</li>
+                </ul>
+
+                <h3>Legal Aid and Support</h3>
+                <ul>
+                    <li>Legal Aid Society</li>
+                    <li>Tenant Rights Organizations</li>
+                    <li>Law School Legal Clinics</li>
+                </ul>
+
+                <a href="#" class="resource-button">Find Local Tenant Support</a>
+            </div>
+
+            <div class="disclaimer">
+                <h4>Disclaimer</h4>
+                <p>This information is provided for general educational purposes only and does not constitute legal advice. Laws vary by state and locality. For specific advice regarding your situation, please consult with a qualified attorney in your area.</p>
+            </div>
+        </div>
+
+        <a href="../resourses.html" class="back-button">Back to Resources</a>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>LegalAssist AI - Simplifying Legal Information</p>
+            <p class="copyright">© 2025 LegalAssist AI. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+                 
+                 
+                   

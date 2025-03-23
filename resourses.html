@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalAssist AI - Resources</title>
+    <style>
+      * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Main Website with Black and White Theme */
+body {
+    background: #ffffff;
+    min-height: 100vh;
+    position: relative;
+}
+
+header {
+    background-color: #000000;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.logo span {
+    color: #ffffff;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav li {
+    margin-left: 30px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #cccccc;
+}
+
+nav a.active {
+    color: #cccccc;
+    font-weight: bold;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.page-header {
+    text-align: center;
+    margin: 2rem 0 4rem;
+    background-color: #f0f0f0;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border-left: 6px solid #000000;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    color: #000000;
+    margin-bottom: 1rem;
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    color: #000000;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.resources-content {
+    background-color: white;
+    border-radius: 10px;
+    padding: 2.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 3rem;
+}
+
+.resources-section {
+    margin-bottom: 3rem;
+}
+
+.resources-section:last-child {
+    margin-bottom: 0;
+}
+
+.resources-section h2 {
+    color: #000000;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.resources-section p {
+    color: #000000;
+    line-height: 1.7;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.resource-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.resource-card {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+}
+
+.resource-icon {
+    height: 120px;
+    background-color: #dddddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #000000;
+}
+
+.resource-info {
+    padding: 1.5rem;
+}
+
+.resource-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 0.5rem;
+}
+
+.resource-desc {
+    color: #000000;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.read-more-btn {
+    display: inline-block;
+    background-color: #000000;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.read-more-btn:hover {
+    background-color: #333333;
+}
+
+.download-section {
+    margin-top: 2rem;
+}
+
+.download-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.download-item {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.download-item:hover {
+    transform: translateY(-3px);
+}
+
+.download-icon {
+    font-size: 2rem;
+    color: #000000;
+    margin-right: 1.5rem;
+    flex-shrink: 0;
+}
+
+.download-info {
+    flex-grow: 1;
+}
+
+.download-title {
+    color: #000000;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.download-desc {
+    color: #000000;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.download-btn {
+    display: inline-block;
+    background-color: #000000;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+    background-color: #333333;
+}
+
+/* General Footer Styles */
+.footer {
+    background-color: #000;
+    color: #fff;
+    padding: 50px 0;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    position: relative;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Styling for the Logo */
+.footer-logo .logo {
+    font-size: 32px;
+
+    justify-content: center;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    font-family: 'Helvetica', sans-serif;
+}
+
+.footer-logo .logo span {
+    color: #666;
+    margin-top: -7px;
+}
+
+.footer-logo .description {
+    font-size: 14px;
+    opacity: 0.7;
+    margin-top: 5px;
+}
+
+/* Footer Links */
+.footer-links {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-section {
+    flex: 1;
+    margin: 0 15px;
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 14px;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+    color: #999;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    color: #fff;
+}
+
+/* Social Media Icons */
+.social-media {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.social-icon {
+    color: #fff;
+    font-size: 24px;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section {
+        margin-bottom: 30px;
+    }
+
+    .logo {
+        font-size: 28px;
+    }
+
+    .description {
+        font-size: 12px;
+    }
+
+    .footer-section h3 {
+        font-size: 16px;
+    }
+}
+
+.copyright {
+    margin-top: 1rem;
+    color: #ffffff;
+    font-size: 0.9rem;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 2rem;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.close-button {
+    position: absolute;
+    right: 1.5rem;
+    top: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #000000;
+}
+
+#modal-title {
+    color: #000000;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #000000;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #000000;
+    outline: none;
+}
+
+form button {
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #333333;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .resource-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .download-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .resource-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Blank page for downloads */
+.blank-page {
+    padding: 50px;
+    text-align: center;
+    color: #000000;
+} 
+    </style>
+</head>
+<body>
+    <!-- Main Website -->
+    <header>
+        <div class="logo">Legal<span>Assist</span> AI</div>
+        <nav>
+            <ul>
+                <li><a href="chat.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="legaltopics.html">Legal Topics</a></li>
+                <li><a href="#" class="active">Resources</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Legal Resources</h1>
+            <p>Access free legal guides, templates, and directories to help you understand your rights and navigate the legal system.</p>
+        </section>
+
+        <div class="resources-content">
+            <section class="resources-section">
+                <h2>Free Legal Guides</h2>
+                <p>Our comprehensive tool can explain complex legal concepts in plain language. It can help you understand your legal rights and options, though they should not replace professional legal advice for your specific situation.</p>
+                
+                <div class="resource-cards">
+                    <div class="resource-card">
+                        <div class="resource-icon">📋</div>
+                        <div class="resource-info">
+                            <div class="resource-title">Tenant Rights Guide</div>
+                            <div class="resource-desc">Learn about your rights as a tenant, including lease agreements, repairs, security deposits, and eviction processes.</div>
+                            <a href="guides/tenant-rights.html" class="read-more-btn">Read More</a>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">💼</div>
+                        <div class="resource-info">
+                            <div class="resource-title">Employment Law Basics</div>
+                            <div class="resource-desc">Understand workplace rights, discrimination laws, wage requirements, and what to do if your rights are violated.</div>
+                            <a href="guides/employment-law.html" class="read-more-btn">Read More</a>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">⚖️</div>
+                        <div class="resource-info">
+                            <div class="resource-title">Small Claims Court</div>
+                            <div class="resource-desc">Step-by-step guidance on filing a small claims case, preparing for court, and collecting a judgment.</div>
+                            <a href="guides/small-claims.html" class="read-more-btn">Read More</a>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">🏠</div>
+                        <div class="resource-info">
+                            <div class="resource-title">Homeowner's Legal Guide</div>
+                            <div class="resource-desc">Information on property rights, HOA disputes, foreclosure prevention, and home insurance claims.</div>
+                            <a href="guides/homeowner-guide.html" class="read-more-btn">Read More</a>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">👪</div>
+                        <div class="resource-info">
+                            <div class="resource-title">Family Law Overview</div>
+                            <div class="resource-desc">Guidance on divorce, child custody, support payments, adoption, and domestic violence protection.</div>
+                            <a href="guides/family-law.html" class="read-more-btn">Read More</a>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">🛡️</div>
+                        <div class="resource-info">
+                            <div class="resource-title">Consumer Protection</div>
+                            <div class="resource-desc">Learn about your rights as a consumer, how to handle fraud, and steps to take when disputing charges.</div>
+                            <a href="guides/consumer-protection.html" class="read-more-btn">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="resources-section">
+                <h2>Document Templates</h2>
+                <p>Access free legal document templates that can help you with common legal needs. While these templates provide a starting point, consider having an attorney review any important legal documents before finalizing them.</p>
+                
+                <div class="download-section">
+                    <div class="download-grid">
+                        <div class="download-item">
+                            <div class="download-icon">📝</div>
+                            <div class="download-info">
+                                <div class="download-title">Simple Will Template</div>
+                                <div class="download-desc">Basic will template with instructions for documenting your final wishes and property distribution.</div>
+                                <a href="dwl/will.html" class="download-btn">Download PDF</a>
+                            </div>
+                        </div>
+                        <div class="download-item">
+                            <div class="download-icon">🏠</div>
+                            <div class="download-info">
+                                <div class="download-title">Residential Lease Agreement</div>
+                                <div class="download-desc">Standard rental agreement template with customizable terms for landlords and tenants.</div>
+                                <a href="dwl/lease.html" class="download-btn">Download PDF</a>
+                            </div>
+                        </div>
+                        <div class="download-item">
+                            <div class="download-icon">🤝</div>
+                            <div class="download-info">
+                                <div class="download-title">General Power of Attorney</div>
+                                <div class="download-desc">Form to legally authorize someone to act on your behalf for specified matters.</div>
+                                <a href="dwl/general-power-of-attorney.html" class="download-btn">Download PDF</a>
+                            </div>
+                        </div>
+                        <div class="download-item">
+                            <div class="download-icon">💊</div>
+                            <div class="download-info">
+                                <div class="download-title">Healthcare Directive</div>
+                                <div class="download-desc">Document your medical care preferences and designate a healthcare proxy.</div>
+                                <a href="dwl/health-care-directive.html" class="download-btn">Download PDF</a>
+                            </div>
+                        </div>
+                        <div class="download-item">
+                            <div class="download-icon">🛒</div>
+                            <div class="download-info">
+                                <div class="download-title">Bill of Sale</div>
+                                <div class="download-desc">Document for recording the sale of property or goods between parties.</div>
+                                <a href="dwl/bill-of-sale.html" class="download-btn">Download PDF</a>
+                            </div>
+                        </div>
+                        <div class="download-item">
+                            <div class="download-icon">🤐</div>
+                            <div class="download-info">
+                                <div class="download-title">Non-Disclosure Agreement</div>
+                                <div class="download-desc">Template for creating a legal agreement to protect confidential information.</div>
+                                <a href="dwl/nda-template.html" class="download-btn">Download PDF</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo">
+                    Legal<span>Assist</span> AI
+                </div>
+                <div class="description">
+                    Your trusted AI assistant for legal advice and resources.
+                </div>
+            </div>
+    
+            <div class="footer-links">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+    
+                <div class="footer-section">
+                    <h3>Legal Resources</h3>
+                    <ul>
+                        <li><a href="#">Divorce Laws</a></li>
+                        <li><a href="#">IPC Sections</a></li>
+                        <li><a href="#">Legal Advice</a></li>
+                        <li><a href="#">Contract Templates</a></li>
+                    </ul>
+                </div>
+    
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Email: <a href="mailto:support@legalassist.com">legalassistai@gmail.com</a></li>
+                        <li>Phone: +919074653054</li>
+                        <li>Address: Ilahia engineering and technology</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="social-media">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+    
+            <div class="copyright">
+                © 2025 LegalAssist AI. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
